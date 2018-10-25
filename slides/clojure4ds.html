@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Clojure for data science</title>
+
+		<meta name="description" content="language agnostic bidirectional data-driven transformation dsl for fun and profit">
+		<meta name="author" content="Andrew Tropin">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/tomorrow.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Preliminary data analysis</h2>
+					<h4>functional way</h4>
+          <img src="https://user-images.githubusercontent.com/1218615/47501235-a2d98780-d86d-11e8-87ce-639b91392c58.png" height="200px">
+					<p>
+						<small><a href="https://github.com/abcdw">Andrew Tropin</a></small>
+					</p>
+
+	        <aside class="notes">
+	        </aside>
+				</section>
+
+        <section>
+          <h2>Content</h2>
+					<ol>
+						<li>What is Functional Programming?</li>
+						<li>What is Preliminary Data Analysis?</li>
+						<li>Workshop</li>
+						<li>Q/A</li>
+					</ol>
+        </section>
+
+        <section>
+          <h2>Pure functions</h2>
+          <img src="https://user-images.githubusercontent.com/1218615/47501583-89850b00-d86e-11e8-8caa-093fcdae29b2.png" height="400px">
+
+	        <aside class="notes">
+            Know your audience (type system, technologies)
+	        </aside>
+        </section>
+
+        <section>
+          <h2>Value</h2>
+
+          <img src="https://user-images.githubusercontent.com/1218615/47501967-5ee78200-d86f-11e8-9239-676bcc4846f2.png" height="400px">
+        </section>
+
+        <section>
+          <h2>Preliminary data analysis</h2>
+
+					<ul>
+						<li class="fragment">Understanding types</li>
+						<li class="fragment">Data shaping</li>
+						<li class="fragment">Plotting</li>
+						<li class="fragment">Descriptive statistics</li>
+					</ul>
+        </section>
+
+        <section>
+          <h2>Perfect match?</h2>
+          <p>FP <3 DATA</p>
+        </section>
+
+        <section>
+          <h2>Workshop time!</h2>
+					<ul>
+						<li>Learn Clojure</li>
+						<li>Implement pandas</li>
+						<li>Solve assignment</li>
+					</ul>
+        </section>
+
+        <section>
+          <h2>Results</h2>
+					<ul>
+						<li>Born to work with data</li>
+						<li>Has ecosystem and tools</li>
+						<li>GraalVM coming</li>
+					</ul>
+        </section>
+
+
+        <section>
+          <!-- <img src="https://user-images.githubusercontent.com/1218615/43453962-374b7d44-94c4-11e8-83c2-5d9c703fce36.png"> -->
+          <h2>Question?</h2>
+          <p>@andrewtropin</p>
+          <a href="https://github.com/abcdw">https://github.com/abcdw</p>
+          <a href="https://github.com/abcdw/talks">abcdw/talks</p>
+        </section>
+      </div>
+    </div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+          controls: false,
+          /* progress: false, */
+          history: true,
+          center: true,
+          slideNumber: true,
+          dependencies: [
+              { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+              /* { src: 'plugin/markdown/marked.js' }, */
+              /* { src: 'plugin/markdown/markdown.js' }, */
+              { src: 'plugin/notes/notes.js', async: true },
+              { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				  ]
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+{:paths ["src"]
+ :deps  {org.clojure/clojure  {:mvn/version "1.9.0"}
+         orchestra            {:mvn/version "2018.08.19-1"}
+         com.rpl/specter      {:mvn/version "1.1.1"}
+         org.clojure/data.csv {:mvn/version "0.1.4"}
+         ;; incanter {:mvn/version "1.9.3"}
+         }
+
+ :mvn/repos
+ {;; "central" {:url "https://repo1.maven.org/maven2/"}
+
+  "central" {:url "http://repo.maven.apache.org/maven2"}
+  ;; "central" {:url "http://mirrors.ibiblio.org/pub/mirrors/maven2"}
+  "clojars" {:url "https://clojars.org/repo"}}
+
+ :aliases
+ {:nrepl
+  {:extra-deps
+   {spyscope                      {:mvn/version "0.1.6"}
+    org.clojure/tools.nrepl       {:mvn/version "0.2.13"}
+    cider/cider-nrepl             {:mvn/version "0.18.0-SNAPSHOT"}
+    refactor-nrepl/refactor-nrepl {:mvn/version "2.4.0-SNAPSHOT"}}
+   :main-opts
+   ["-e" "(require,'cider-nrepl.main)(require,'spyscope.core)(cider-nrepl.main/init,[\"refactor-nrepl.middleware/wrap-refactor\",\"cider.nrepl/cider-middleware\"])"]}
+
+  :test {:extra-paths ["test"]
+         :extra-deps  {healthsamurai/matcho {:mvn/version "0.3.2"}}}
+
+  :runner
+  {:extra-deps
+   {com.cognitect/test-runner
+    {:git/url "https://github.com/cognitect-labs/test-runner"
+     :sha     "78d380d00e7a27f7b835bb90af37e73b20c49bcc"}}
+   :main-opts ["-m" "cognitect.test-runner" "-d" "test"]}}}

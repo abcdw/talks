@@ -1,0 +1,398 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Ironhide, the data transformer</title>
+
+		<meta name="description" content="language agnostic bidirectional data-driven transformation dsl for fun and profit">
+		<meta name="author" content="Andrew Tropin">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/tomorrow.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Ironhide</h1>
+					<h4>The data transformer</h4>
+          <img src="https://user-images.githubusercontent.com/1218615/46091186-f7c8a600-c1ba-11e8-98e0-90f319727530.jpg" height="200px">
+					<p>
+						<small>Created by <a href="https://github.com/abcdw">Andrew Tropin</a> and <a href="https://github.com/healthsamurai/ironhide/graphs/contributors">contributors</a></small>
+					</p>
+
+	        <aside class="notes">
+            Who am I?
+            How I related to fp?
+	        </aside>
+				</section>
+
+        <section>
+          <h2>Content</h2>
+					<ol>
+						<li>Introduction</li>
+						<li>Solution description</li>
+						<li>Implementation details</li>
+					</ol>
+        </section>
+
+        <section>
+          <h1>Introduction</h1>
+	        <aside class="notes">
+            Know your audience (type system, technologies)
+	        </aside>
+        </section>
+
+        <section>
+          <h2>What is data?</h2>
+	        <p class="fragment">In our case it's a tree-like structure,</p>
+	        <p class="fragment">anything isomorphic to json/xml</p>
+        </section>
+
+        <section>
+          <h2>Problem</h2>
+          Different systems have different data models and it's often necessary
+          to keep data in sync
+
+	        <aside class="notes">
+            Why this idea appeared?
+	        </aside>
+        </section>
+
+        <section>
+          <h2>Who is affected?</h2>
+          <p>Interaction<p>
+
+					<ul>
+						<li class="fragment">between frontend and backend</li>
+						<li class="fragment">with external/legacy system</li>
+						<li class="fragment">of different technologies</li>
+						<li class="fragment">...</li>
+					</ul>
+        </section>
+
+        <section>
+          <h2>Example</h2>
+          <p>fronted:</p>
+				  <pre><code class="hljs" data-trim contenteditable>
+
+        {"name" : "Alexander Ivanov"}
+
+				  </code></pre>
+          <p>backend:</p>
+				  <pre><code class="hljs" data-trim contenteditable>
+{
+  "name": [{
+    "given": [
+      "Alexander"
+    ],
+    "family": "Ivanov"
+  }]
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Existing solutions</h2>
+					<ul>
+						<li class="fragment">Programming languages (python, clojure, etc) </li>
+						<li class="fragment">DSLs (selmer, xslt, boomerang)</li>
+						<li class="fragment">Libraries and utilities (awk, sed, hadoop)</li>
+					</ul>
+        </section>
+
+        <section>
+          <h2>Example</h2>
+          Selmer:
+
+				  <pre><code class="hljs" data-trim contenteditable>
+<ul>
+{% for item in items %}
+    <li>{{item}}</li>
+{% endfor %}
+</ul>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Solutions similarities</h2>
+          <p>They all have:</p>
+					<ul>
+						<li class="fragment">data</li>
+						<li class="fragment">language</li>
+						<li class="fragment">runtime</li>
+					</ul>
+
+	        <aside class="notes">
+            Why language and interpreter were developed?
+	        </aside>
+        </section>
+
+        <section>
+          <h2>Objectives</h2>
+          Create a language with following properties:
+					<ul>
+						<li class="fragment">bidirectional</li>
+						<li class="fragment">data-driven</li>
+						<li class="fragment">runtime agnostic</li>
+					</ul>
+
+	        <aside class="notes">
+            Why they are important?
+	        </aside>
+        </section>
+
+        <section>
+          <h1>Solution description</h1>
+        </section>
+
+
+        <section>
+          <h2>Rules</h2>
+          The heart of transformation
+
+				  <pre><code class="hljs" data-trim contenteditable>
+          :rules [{:form [:ihm/name<->vector [0]]
+                   :fhir [:name [0] :given [0]]}
+
+                  {:form [:ihm/name<->vector [1]]
+                   :fhir [:name [0] :family]}
+
+                  {:ih/value {:fhir [:default-gender]}
+                   :fhir [:gender]}]
+          </code></pre>
+        </section>
+
+        <section data-background-iframe="https://healthsamurai.github.io/ironhide/" data-background-interactive>
+          <!-- <h2>Iframe</h2> -->
+        </section>
+
+        <section>
+          <h2>Paths</h2>
+          <p>Addressing the element</p>
+
+				  <pre><code class="hljs" data-trim contenteditable>
+[:name [0] :given [0]]
+
+[:telecom [:* {:system "phone"}] :value]
+
+;; {:name "Firstname Secondname"}
+[:name :ihs/str<->vector [0]] ;; => [["Firstname"]]
+          </code></pre>
+	        <aside class="notes">
+            Similar to XPath, jpath.
+            key,
+            vnav,
+            vkey,
+            vfilter,
+            sight,
+            micro
+	        </aside>
+        </section>
+
+        <section data-background-iframe="https://healthsamurai.github.io/ironhide/" data-background-interactive>
+          <!-- <h2>Iframe</h2> -->
+        </section>
+
+        <section>
+          <h2>Multidimensional figures</h2>
+
+          <div class="image-box" style="text-align:left;">
+          <img src="https://user-images.githubusercontent.com/1218615/46072522-44948880-c18b-11e8-83e2-54e2050e22b7.png" height="200px">
+          <img src="https://user-images.githubusercontent.com/1218615/46072523-44948880-c18b-11e8-9dd1-3d0a529e585a.png" height="200px">
+
+          </div>
+        </section>
+
+        <section>
+          <h2>Multidimensional figures</h2>
+          <div style="text-align:left;">
+          <img src="https://user-images.githubusercontent.com/1218615/46072522-44948880-c18b-11e8-83e2-54e2050e22b7.png" height="140px" style="padding-right:40px;">
+
+          <img src="https://user-images.githubusercontent.com/1218615/46072523-44948880-c18b-11e8-9dd1-3d0a529e585a.png" height="140px">
+          <img src="https://user-images.githubusercontent.com/1218615/46072524-44948880-c18b-11e8-8174-f6277865be4d.png">
+          </div>
+
+        </section>
+
+        <section data-background-iframe="https://healthsamurai.github.io/ironhide/" data-background-interactive>
+          <!-- <h2>Iframe</h2> -->
+        </section>
+
+        <section>
+          <h2>Micros</h2>
+          Do <b>not</b> copypaste
+
+				  <pre><code class="hljs" data-trim contenteditable>
+          (microexpand-path
+
+           {:ih/micros {:ihm/name [:name [:index] :given [0]]}}
+
+           [{:ih/micro :ihm/name :index 10}])
+          ;; => [:name [10] :given [0]]
+          </code></pre>
+        </section>
+
+        <section data-background-iframe="https://healthsamurai.github.io/ironhide/" data-background-interactive>
+          <!-- <h2>Iframe</h2> -->
+        </section>
+
+        <section>
+          <h2>Values</h2>
+          Missing some data?(
+
+				  <pre><code class="hljs" data-trim contenteditable>
+
+          {:ih/values {:person/name "Name not provided by the form"}
+
+           :ih/rules  [{:form     [:name]
+                        :form-2   [:fullname]
+                        :ih/value {:form-2 [:ih/values :person/name]}}]}
+
+          </code></pre>
+        </section>
+
+        <section data-background-iframe="https://healthsamurai.github.io/ironhide/" data-background-interactive>
+          <!-- <h2>Iframe</h2> -->
+        </section>
+
+        <section>
+          <h2>Sights</h2>
+					<ul>
+						<li class="fragment">str<->ast</li>
+						<li class="fragment">camel<->kebab</li>
+						<li class="fragment">suitable?</li>
+					</ul>
+        </section>
+
+        <section>
+          <h2>Sights</h2>
+          xml<->ast sight example
+
+				  <pre><code class="hljs" data-trim contenteditable>
+          <ul>
+            <li class="cl">str<->ast</li>
+            <li class="cl">camel<->kebab</li>
+            <li class="cl">suitable?</li>
+          </ul>
+
+          {"ul":
+           {"li": [{"-class": "cl", "#text": "str<->ast"},
+                   {"-class": "cl", "#text": "camel<->kebab"},
+                   {"-class": "cl", "#text": "suitable?"}]}}
+          </code></pre>
+
+	        <aside class="notes">
+            sed config before deploy
+	        </aside>
+        </section>
+
+        <section data-background-iframe="https://healthsamurai.github.io/ironhide/" data-background-interactive>
+          <!-- <h2>Iframe</h2> -->
+        </section>
+
+
+				<!-- <section> -->
+        <!-- <iframe class="stretch" src="https://healthsamurai.github.io/ironhide/"></iframe>  -->
+        <!-- </section> -->
+        <!-- <section data-background-iframe="https://healthsamurai.github.io/ironhide/" data-background-interactive> -->
+        <!-- <h2>Iframe</h2> -->
+        <!-- </section> -->
+
+
+
+        <section>
+          <h1>Implementation details</h1>
+        </section>
+
+        <section>
+          <h2>Validation</h2>
+
+				  <pre><code class="hljs" data-trim contenteditable>
+          (s/def ::path (s/coll-of ::pelem))
+          (s/def ::pelem (s/or :mkey ::mkey :sight ::sight :vnav ::vnav))
+          (s/def ::mkey keyword?)
+          (s/def ::sight sight?)
+          (s/def ::vnav
+          (s/cat :vkey ::vkey :vfilter (s/? ::vfilter)))
+
+          (s/def ::vkey (s/or :index ::index :wildcard ::wildcard))
+          (s/def ::wildcard #(= :* %))
+          (s/def ::index nat-int?)
+          (s/def ::vfilter map?)
+          </code></pre>
+
+	        <aside class="notes">
+            common order: lexing->syntactic->parsing
+
+            parser and lexer already written for edn/json
+
+	        </aside>
+        </section>
+
+        <section>
+          <h2>Interpreter</h2>
+          <img src="https://user-images.githubusercontent.com/1218615/46083560-5f2a2a00-c1aa-11e8-8000-7aea0d6a3af7.jpg">
+        </section>
+
+        <section>
+          <h2>Micros</h2>
+          <img src="https://user-images.githubusercontent.com/1218615/46088776-cf8a7880-c1b5-11e8-844a-88be63e436ea.jpg">
+        </section>
+
+        <section>
+          <h2>Sights</h2>
+          <ul>
+            <li class="fragment">multimethods</li>
+            <li class="fragment">closures</li>
+          </ul>
+        </section>
+
+        <section>
+          <!-- <img src="https://user-images.githubusercontent.com/1218615/43453962-374b7d44-94c4-11e8-83c2-5d9c703fce36.png"> -->
+          <h2>Question?</h2>
+          <p>@andrewtropin</p>
+          <a href="https://github.com/abcdw">https://github.com/abcdw</p>
+            <a href="https://github.com/healthsamurai/ironhide">healthsamurai/ironhide</p>
+        </section>
+      </div>
+    </div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+          controls: false,
+          /* progress: false, */
+          history: true,
+          center: true,
+          slideNumber: true,
+        dependencies: [
+					  { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					  /* { src: 'plugin/markdown/marked.js' }, */
+					  /* { src: 'plugin/markdown/markdown.js' }, */
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
