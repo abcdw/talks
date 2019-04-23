@@ -5,6 +5,7 @@ objects := $(sources:%/slides.md=docs/%.html)
 docs/%.html : %/slides.md revealjs-header.html
 	pandoc -t revealjs -s -o $@ $< \
 -V controls=false -V center=true \
+--template revealjs-template.html \
 --standalone \
 --slide-level=2 \
 --no-highlight \
