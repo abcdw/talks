@@ -19,3 +19,29 @@
 
 .reveal .slide-number-delimiter {
   margin: 0 3px; }
+
+p.author {
+    color: #c82829;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    text-transform: none;
+}
+
+h1.title {
+    text-transform: none;
+}
+
+h3.subtitle {
+    text-transform: none;
+}
+
+img.title-image {
+    border: none !important;
+    box-shadow: none !important;
+}
