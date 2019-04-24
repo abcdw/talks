@@ -2,7 +2,7 @@
 author: Andrew Tropin
 title: "Guix & Nix"
 subtitle: "OSes: functional approach"
-title-image: "https://nixos.org/logo/nixos-logo-only-hires.png"
+title-image: "images/02/guix_and_nix.png"
 date: April 25, 2019
 revealjs-url: 'https://revealjs.com'
 theme: white
@@ -10,6 +10,10 @@ slideNumber: true
 ---
 
 # whoami
+
+## Slides
+
+- https://github.com/abcdw/talks
 
 # Plan {.center}
 
@@ -22,8 +26,8 @@ slideNumber: true
 - How to choose?
 - How to install?
 
-# State of the art
 
+# Current state
 
 ## How we install software?
 
@@ -35,8 +39,13 @@ snap install vscode
 
 ## How we deal with dependencies?
 
+- Try to make things consistent (rpm, deb, etc)
+- Isolate environment (virtualenv, node_modules, docker)
+
+
 ## Free software
 
+# State of the art
 # Perks
 
 ## Package management
