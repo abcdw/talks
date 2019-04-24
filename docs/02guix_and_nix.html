@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Andrew Tropin">
+  <meta name="dcterms.date" content="2019-04-25">
+  <!-- <title>Guix &amp; Nix</title> -->
+  <title>Guix &amp; Nix - OSes: functional approach</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://revealjs.com/css/reveal.css">
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="https://revealjs.com/css/theme/white.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://revealjs.com/css/print/pdf.css' : 'https://revealjs.com/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://revealjs.com/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="highlightjs/styles/tomorrow.css">
+  <script src="highlightjs/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Guix &amp; Nix</h1>
+  <h3 class="subtitle">OSes: functional approach</h3>
+
+  <img class="title-image" src="images/02/guix_and_nix.png" height="200px">
+
+  <p class="author">Andrew Tropin</p>
+  <p class="date">April 25, 2019</p>
+</section>
+
+<section><section id="whoami" class="title-slide slide level1"><h1>whoami</h1></section><section id="slides" class="slide level2">
+<h2>Slides</h2>
+<ul>
+<li>https://github.com/abcdw/talks</li>
+</ul>
+</section></section>
+<section><section id="plan" class="title-slide slide level1 center"><h1>Plan</h1><!-- ## Here's a slide --></section><section id="plan-1" class="slide level2">
+<h2>Plan</h2>
+<ul>
+<li>Current state of system distributions</li>
+<li>Problems and solutions</li>
+<li>How to choose?</li>
+<li>How to install?</li>
+</ul>
+</section></section>
+<section><section id="current-state" class="title-slide slide level1"><h1>Current state</h1></section><section id="how-we-install-software" class="slide level2">
+<h2>How we install software?</h2>
+<pre class="shell"><code>apt-get install python python-pip
+pip install wakatime
+snap install vscode</code></pre>
+</section><section id="how-we-deal-with-dependencies" class="slide level2">
+<h2>How we deal with dependencies?</h2>
+<ul>
+<li>Try to make things consistent (rpm, deb, etc)</li>
+<li>Isolate environment (virtualenv, node_modules, docker)</li>
+</ul>
+</section><section id="free-software" class="slide level2">
+<h2>Free software</h2>
+</section></section>
+<section id="state-of-the-art" class="title-slide slide level1"><h1>State of the art</h1></section>
+<section><section id="perks" class="title-slide slide level1"><h1>Perks</h1></section><section id="package-management" class="slide level2">
+<h2>Package management</h2>
+<h3 id="multiple-versions">Multiple versions</h3>
+<p>No DLL-hell ### Complete dependencies No work-for-me packages from dirty envs ### Multi-user support No trojans, but user can install packages ### Atomic upgrades and rollbacks Switch symlinks is atomic ### Garbage collection Remove only unused packages ### Transparent source/binary deployment –no-substitute</p>
+</section><section id="operating-systems" class="slide level2">
+<h2>Operating systems</h2>
+<h3 id="declarative-configuration">Declarative configuration</h3>
+<h3 id="reproducible-deployements">Reproducible deployements</h3>
+</section></section>
+<section><section id="guixsd-cons-and-pros" class="title-slide slide level1"><h1>GuixSD cons and pros</h1></section><section id="hackable-services" class="slide level2">
+<h2>Hackable services</h2>
+<p>bootstrap -&gt; security trust without</p>
+</section></section>
+<section id="not-solved" class="title-slide slide level1"><h1>Not solved</h1></section>
+<section id="how-to-pick-a-distro-or-package-manager" class="title-slide slide level1"><h1>How to pick a distro or package manager?</h1><p>Nix vs Guix</p>
+<ul>
+<li>Mac vs Linux</li>
+<li>Haskell vs Lisp</li>
+<li>Diversity vs Liberty</li>
+</ul>
+<p>apt, easy_install, pip for installing python applications flatpak, snap, docker - bitcoin miners and you can’t reproduce image npm - example of naive persistent package manager ## Software environment tool ## System configuration tool ## Container provisioning</p>
+<p>guix environment –ad-hoc python python-numpy</p>
+<p>guix import pypi python-numpy</p>
+<p>guix pack –docker</p>
+<p>guix system reconfigure</p>
+<p>declarative</p></section>
+    </div>
+  </div>
+
+  <script src="https://revealjs.com/lib/js/head.min.js"></script>
+  <script src="https://revealjs.com/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://revealjs.com/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://revealjs.com/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://revealjs.com/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
