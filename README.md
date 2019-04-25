@@ -1,2 +1,1 @@
-# talks
-Slides and materials for my public talks
+docs/README.md
