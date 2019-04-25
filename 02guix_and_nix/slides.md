@@ -28,14 +28,13 @@ slideNumber: true
 - How to choose?
 - How to install?
 
-
 # Current [state]()
 
 
 ## What SD should do?
 
-- Software (de)installation
-- Service configuration
+- Software (de)installation, execution
+- Service configuration and management
 
 ## How we manage services?
 
@@ -87,6 +86,7 @@ Note: (virtualenv, node_modules, docker)
 # ~~State~~ of the art
 
 # History
+of functional package and system management
 
 # How package management works
 - No globals state (/bin, /usr/lib)
@@ -97,11 +97,14 @@ Note: (virtualenv, node_modules, docker)
 
 hash(input) + package + version
 ``` shell
+ldd $(which zsh)
+ls /gnu/store
 echo $PATH | sed 's/:/\n/g'
 readlink ~/.guix-profile
 # ...
-ldd $(which zsh)
 ```
+
+Solves dependencies problem.
 
 ## User package management
 
@@ -122,11 +125,7 @@ guix environment --ad-hoc gcc@5.5.0 hello tree
 # echo /gnu/store/*
 ```
 
-## Challenge
-
-``` shell
-guix challenge bash
-```
+Solves reproducible environment problem.
 
 ## Pack
 
@@ -135,6 +134,14 @@ guix pack
 guix pack -f docker
 docker load -i
 ```
+
+## Challenge
+
+``` shell
+guix challenge bash
+```
+
+Partially solves trust problem.
 
 ## Garbage collection
 Remove only unused packages
@@ -203,6 +210,8 @@ guix system search ssh
                  %base-services)))
 ```
 
+Remove state from /etc
+
 ## VM
 
 ``` shell
@@ -215,44 +224,16 @@ guix system vm ./config.scm
 guix build -S guix
 ```
 
-# Recap
-
-## What is guix?
-
-- Package definitions + bootstrap binaries
-- Package manager + library
-- GNU/Linux distro with declarative config
-
-on top of minimalistic language
-
-## Multiple versions
-No DLL-hell
-
-## Complete dependencies
-No work-for-me packages from dirty envs
-
-## Multi-user support
-No trojans, but user can install packages
-
-## Atomic upgrades and rollbacks
-Switch symlinks is atomic
-
-## Transparent source/binary deployment
-`--no-substitute`
-
-## Pure and Declarative
-
-config -> system
-
-## Hackable, introspectable and uniform
-
-Learn the scheme - rule the system
 
 # Problems
 
 # How to install?
 
-## Patition hard drive
+## Partition your drive
+
+``` shell
+parted # && cryptsetup luksFormat ...
+```
 
 ## Create system configuration
 
@@ -276,6 +257,12 @@ Learn the scheme - rule the system
  (services (cons* (dhcp-client-service)
                   (service openssh-service-type)
                   %base-services)))
+```
+
+## Init the system
+
+``` shell
+guix system init ./config.scm
 ```
 
 # How to configure?
@@ -313,6 +300,39 @@ Learn the scheme - rule the system
    (stop #~(make-kill-destructor))))
 ```
 
+# Recap
+
+## What is guix?
+
+- Package definitions + bootstrap binaries
+- Package manager + library
+- GNU/Linux distro with declarative config
+
+on top of minimalistic language
+
+## Multiple versions
+No DLL-hell
+
+## Complete dependencies
+No work-for-me packages from dirty envs
+
+## Multi-user support
+No trojans, but user can install packages
+
+## Atomic upgrades and rollbacks
+Switch symlinks is atomic
+
+## Transparent source/binary deployment
+`--no-substitute`
+
+## Pure and Declarative
+
+config -> system
+
+## Hackable, introspectable and uniform
+
+Learn the scheme - rule the system
+
 # How to pick right1?
 
 Nix vs Guix
@@ -327,7 +347,7 @@ Nix vs Guix
 - #nixos, #guix on freenode
 - [https://www.gnu.org/software/guix/help/](https://www.gnu.org/software/guix/help/)
 - [https://nixos.org/nixos/support.html](https://nixos.org/nixos/support.html)
-- [Referenc card](https://www.gnu.org/software/guix/guix-refcard.pdf)
+- [Reference card](https://www.gnu.org/software/guix/guix-refcard.pdf)
 
 # contact me
 
