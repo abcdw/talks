@@ -48,62 +48,166 @@
   <p class="date">April 25, 2019</p>
 </section>
 
-<section><section id="whoami" class="title-slide slide level1"><h1>whoami</h1></section><section id="slides" class="slide level2">
-<h2>Slides</h2>
-<ul>
-<li>https://github.com/abcdw/talks</li>
-</ul>
-</section></section>
+<section id="whoami" class="title-slide slide level1"><h1>whoami</h1><p>@<a href="https://github.com/abcdw">andrewtropin</a></p></section>
+<section id="whereis" class="title-slide slide level1"><h1>whereis</h1><p><a href="https://github.com/abcdw/talks">https://github.com/abcdw/talks</a></p></section>
 <section><section id="plan" class="title-slide slide level1 center"><h1>Plan</h1><!-- ## Here's a slide --></section><section id="plan-1" class="slide level2">
 <h2>Plan</h2>
 <ul>
 <li>Current state of system distributions</li>
-<li>Problems and solutions</li>
+<li>State of art</li>
+<li>Guix perks</li>
 <li>How to choose?</li>
 <li>How to install?</li>
 </ul>
 </section></section>
-<section><section id="current-state" class="title-slide slide level1"><h1>Current state</h1></section><section id="how-we-install-software" class="slide level2">
+<section><section id="current-state" class="title-slide slide level1"><h1>Current state</h1></section><section id="what-sd-should-do" class="slide level2">
+<h2>What SD should do?</h2>
+<ul>
+<li>Software (de)installation</li>
+<li>Service configuration</li>
+</ul>
+</section><section id="how-we-manage-services" class="slide level2">
+<h2>How we manage services?</h2>
+<p>Mutating global state using config files!</p>
+<pre class="shell"><code>sudo vim /etc/.../postgresql.conf
+sudo service postgresql restart</code></pre>
+</section><section id="how-we-install-software" class="slide level2">
 <h2>How we install software?</h2>
+<p>Mutating global state using package managers!</p>
 <pre class="shell"><code>apt-get install python python-pip
 pip install wakatime
 snap install vscode</code></pre>
 </section><section id="how-we-deal-with-dependencies" class="slide level2">
 <h2>How we deal with dependencies?</h2>
 <ul>
-<li>Try to make things consistent (rpm, deb, etc)</li>
-<li>Isolate environment (virtualenv, node_modules, docker)</li>
+<li>Try to make things consistent</li>
+<li>Static linking</li>
+<li>Custom prefix</li>
+<li>Isolate environment</li>
 </ul>
-</section><section id="free-software" class="slide level2">
-<h2>Free software</h2>
+<p>Note: (virtualenv, node_modules, docker)</p>
+</section><section id="who-we-can-trust" class="slide level2">
+<h2>Who we can trust?</h2>
+<ul>
+<li>???</li>
+</ul>
+</section><section id="how-to-get-reproducible-environment" class="slide level2">
+<h2>How to get reproducible environment?</h2>
+<ul>
+<li>???</li>
+<li>virtualization?</li>
+<li>shared env?</li>
+</ul>
 </section></section>
 <section id="state-of-the-art" class="title-slide slide level1"><h1>State of the art</h1></section>
+<section id="history" class="title-slide slide level1"><h1>History</h1></section>
+<section><section id="how-package-management-works" class="title-slide slide level1"><h1>How package management works</h1><ul>
+<li>No globals state (/bin, /usr/lib)</li>
+<li>Pure: build runtime isolated</li>
+<li>Reproducible: binary cache, deduplication, trust</li>
+</ul></section><section id="persistent-store" class="slide level2">
+<h2>Persistent store</h2>
+<p>hash(input) + package + version</p>
+<pre class="shell"><code>echo $PATH | sed &#39;s/:/\n/g&#39;
+readlink ~/.guix-profile
+# ...
+ldd $(which zsh)</code></pre>
+</section><section id="user-package-management" class="slide level2">
+<h2>User package management</h2>
+<p>Binary or source?</p>
+<pre class="shell"><code>guix package -s
+guix package -i
+guix package -u</code></pre>
+</section><section id="environment" class="slide level2">
+<h2>Environment</h2>
+<pre class="shell"><code>guix environment --ad-hoc gcc@5.5.0 hello tree
+# --pure
+# --container
+# echo /gun/store/*</code></pre>
+</section><section id="challenge" class="slide level2">
+<h2>Challenge</h2>
+<pre class="shell"><code>guix challenge bash</code></pre>
+</section><section id="pack" class="slide level2">
+<h2>Pack</h2>
+<pre class="shell"><code>guix pack
+guix pack -f docker
+docker load -i</code></pre>
+</section><section id="garbage-collection" class="slide level2">
+<h2>Garbage collection</h2>
+<p>Remove only unused packages</p>
+</section><section id="package-definition" class="slide level2">
+<h2>Package definition</h2>
+<pre class="scheme"><code>(define-public hello
+  (package
+    (name &quot;hello&quot;)
+    (version &quot;2.10&quot;)
+    (source (origin
+              (method url-fetch)
+              (uri (string-append &quot;mirror://gnu/hello/hello-&quot; version
+                                  &quot;.tar.gz&quot;))
+              (sha256
+               (base32
+                &quot;0ssi1wpaf7plaswqqjwigppsg5fyh99vdlb9kzl7c9lng89ndq1i&quot;))))
+    (build-system gnu-build-system)
+    (synopsis &quot;Hello, GNU world: An example GNU package&quot;)
+    (description
+     &quot;GNU Hello prints the message \&quot;Hello, world!\&quot; and then exits.  It
+serves as an example of standard GNU coding practices.  As such, it supports
+command-line arguments, multiple languages, and so on.&quot;)
+    (home-page &quot;https://www.gnu.org/software/hello/&quot;)
+    (license gpl3+)))</code></pre>
+</section><section id="hackable-package-definition" class="slide level2">
+<h2>Hackable package definition</h2>
+<p><a href="https://github.com/meiyopeng/guix-packages/blob/master/meiyo/packages/linux-nonfree.scm">https://github.com/meiyopeng/guix-packages/blob/master/meiyo/packages/linux-nonfree.scm</a></p>
+</section><section id="import" class="slide level2">
+<h2>Import</h2>
+<p>guix import gem rails</p>
+</section></section>
+<section><section id="inside-system-distribution" class="title-slide slide level1"><h1>Inside system distribution</h1><ul>
+<li>Declarative</li>
+</ul></section><section id="init" class="slide level2">
+<h2>Init?</h2>
+<pre class="shell"><code>cat $(which shepherd)</code></pre>
+</section><section id="system-configuration" class="slide level2">
+<h2>System configuration</h2>
+<p><a href="https://github.com/abcdw/configs/blob/master/guix/qemu.scm">~/configs/guix/qemu.scm</a></p>
+<pre class="shell"><code>guix system reconfigure ./config.scm</code></pre>
+</section><section id="services" class="slide level2">
+<h2>Services</h2>
+<pre class="scheme"><code>(services (cons* (dhcp-client-service)
+                 (service openssh-service-type
+                          (openssh-configuration
+                            (port-number 2222)))
+                 %base-services)))</code></pre>
+</section><section id="vm" class="slide level2">
+<h2>VM</h2>
+<pre class="shell"><code>guix system vm ./config.scm</code></pre>
+</section><section id="explore" class="slide level2">
+<h2>Explore</h2>
+<pre class="shell"><code>guix build -S guix</code></pre>
+</section><section id="what-is-guix" class="slide level2">
+<h2>What is guix?</h2>
+<ul>
+<li>Package definitions + bootstrap binaries</li>
+<li>Package manager + library</li>
+<li>GNU/Linux distro with declarative config</li>
+</ul>
+</section></section>
 <section><section id="perks" class="title-slide slide level1"><h1>Perks</h1></section><section id="package-management" class="slide level2">
 <h2>Package management</h2>
 <h3 id="multiple-versions">Multiple versions</h3>
-<p>No DLL-hell ### Complete dependencies No work-for-me packages from dirty envs ### Multi-user support No trojans, but user can install packages ### Atomic upgrades and rollbacks Switch symlinks is atomic ### Garbage collection Remove only unused packages ### Transparent source/binary deployment –no-substitute</p>
-</section><section id="operating-systems" class="slide level2">
-<h2>Operating systems</h2>
-<h3 id="declarative-configuration">Declarative configuration</h3>
-<h3 id="reproducible-deployements">Reproducible deployements</h3>
+<p>No DLL-hell ### Complete dependencies No work-for-me packages from dirty envs ### Multi-user support No trojans, but user can install packages ### Atomic upgrades and rollbacks Switch symlinks is atomic</p>
+<h3 id="transparent-sourcebinary-deployment">Transparent source/binary deployment</h3>
+<p>–no-substitute</p>
 </section></section>
-<section><section id="guixsd-cons-and-pros" class="title-slide slide level1"><h1>GuixSD cons and pros</h1></section><section id="hackable-services" class="slide level2">
-<h2>Hackable services</h2>
-<p>bootstrap -&gt; security trust without</p>
-</section></section>
-<section id="not-solved" class="title-slide slide level1"><h1>Not solved</h1></section>
 <section id="how-to-pick-a-distro-or-package-manager" class="title-slide slide level1"><h1>How to pick a distro or package manager?</h1><p>Nix vs Guix</p>
 <ul>
+<li>Package manager vs SD</li>
 <li>Mac vs Linux</li>
 <li>Haskell vs Lisp</li>
 <li>Diversity vs Liberty</li>
 </ul>
-<p>apt, easy_install, pip for installing python applications flatpak, snap, docker - bitcoin miners and you can’t reproduce image npm - example of naive persistent package manager ## Software environment tool ## System configuration tool ## Container provisioning</p>
-<p>guix environment –ad-hoc python python-numpy</p>
-<p>guix import pypi python-numpy</p>
-<p>guix pack –docker</p>
-<p>guix system reconfigure</p>
-<p>declarative</p></section>
+<p>guix pack –docker</p></section>
     </div>
   </div>
 

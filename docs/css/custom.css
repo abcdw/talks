@@ -23,6 +23,10 @@
 /* p.author { */
 /*     color: #c82829; */
 /* } */
+.scheme code {
+    font-size: 0.75em;
+    line-height: 1.2em !important;
+}
 
 .reveal h1,
 .reveal h2,
