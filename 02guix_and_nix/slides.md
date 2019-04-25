@@ -9,19 +9,18 @@ theme: white
 slideNumber: true
 ---
 
-# whoami
-@[andrewtropin](https://github.com/abcdw)
+## `whereis`
 
-# whereis
+[github.com/abcdw/talks](https://github.com/abcdw/talks)
 
-[https://github.com/abcdw/talks](https://github.com/abcdw/talks)
+
+## `whoami && who`
+
+- github: [abcdw](https://github.com/abcdw)
+- tg: [andrewtropin](https://t.me/andrewtropin)
 
 
 # Plan {.center}
-
-<!-- ## Here's a slide -->
-
-## Plan
 
 - Current state of system distributions
 - State of art
@@ -30,7 +29,8 @@ slideNumber: true
 - How to install?
 
 
-# Current state
+# Current [state]()
+
 
 ## What SD should do?
 
@@ -46,6 +46,8 @@ sudo vim /etc/.../postgresql.conf
 sudo service postgresql restart
 ```
 
+Which can conflict with maintainer version.
+
 ## How we install software?
 
 Mutating global state using package managers!
@@ -54,20 +56,27 @@ Mutating global state using package managers!
 apt-get install python python-pip
 pip install wakatime
 snap install vscode
+curl https://nixos.org/nix/install | sh
+./configure && make && make install
 ```
 
-## How we deal with dependencies?
+Which can't be undone.
+
+## Who we can trust?
+
+???
+
+## How we deal with
+
+### dependencies and conflicts?
 
 - Try to make things consistent
 - Static linking
 - Custom prefix
+- Give up
 - Isolate environment
 
 Note: (virtualenv, node_modules, docker)
-
-## Who we can trust?
-
-- ???
 
 ## How to get reproducible environment?
 
@@ -75,7 +84,7 @@ Note: (virtualenv, node_modules, docker)
 - virtualization?
 - shared env?
 
-# State of the art
+# ~~State~~ of the art
 
 # History
 
@@ -110,7 +119,7 @@ guix package -u
 guix environment --ad-hoc gcc@5.5.0 hello tree
 # --pure
 # --container
-# echo /gun/store/*
+# echo /gnu/store/*
 ```
 
 ## Challenge
@@ -129,6 +138,10 @@ docker load -i
 
 ## Garbage collection
 Remove only unused packages
+
+``` scheme
+guix gc
+```
 
 ## Package definition
 
@@ -163,7 +176,7 @@ command-line arguments, multiple languages, and so on.")
 guix import gem rails
 
 # Inside system distribution
-- Declarative
+
 
 ## Init?
 
@@ -177,6 +190,7 @@ cat $(which shepherd)
 
 ``` shell
 guix system reconfigure ./config.scm
+guix system search ssh
 ```
 
 ## Services
@@ -201,31 +215,106 @@ guix system vm ./config.scm
 guix build -S guix
 ```
 
+# Recap
+
 ## What is guix?
 
 - Package definitions + bootstrap binaries
 - Package manager + library
 - GNU/Linux distro with declarative config
 
+on top of minimalistic language
 
-# Perks
-
-## Package management
-
-### Multiple versions
+## Multiple versions
 No DLL-hell
-### Complete dependencies
+
+## Complete dependencies
 No work-for-me packages from dirty envs
-### Multi-user support
+
+## Multi-user support
 No trojans, but user can install packages
-### Atomic upgrades and rollbacks
+
+## Atomic upgrades and rollbacks
 Switch symlinks is atomic
 
-### Transparent source/binary deployment
---no-substitute
+## Transparent source/binary deployment
+`--no-substitute`
 
+## Pure and Declarative
 
-# How to pick a distro or package manager?
+config -> system
+
+## Hackable, introspectable and uniform
+
+Learn the scheme - rule the system
+
+# Problems
+
+# How to install?
+
+## Patition hard drive
+
+## Create system configuration
+
+``` scheme
+(operating-system
+ (host-name "functional-machine")
+ (timezone "Europe/Moscow")
+ (locale "ru_RU.utf8")
+ (bootloader (grub-configuration (device "/dev/sda")))
+ (file-systems (cons (file-system
+                      (device "my-root")
+                      (title ’label)
+                      (mount-point "/")
+                      (type "ext4"))
+                     %base-file-systems))
+ (users (cons (user-account
+               (name "bob")
+               (group "users")
+               (home-directory "/home/bob"))
+              %base-user-accounts))
+ (services (cons* (dhcp-client-service)
+                  (service openssh-service-type)
+                  %base-services)))
+```
+
+# How to configure?
+
+## Define more services
+
+``` scheme
+(service openssh-service-type
+         (openssh-configuration
+          (x11-forwarding? #t)
+          (permit-root-login ’without-password)))
+```
+
+## Update service list
+
+``` scheme
+(operating-system
+ ;; ...
+ (services (remove (lambda (service)
+                           (eq? ntp-service-type
+                                (service-kind service)))
+                   %desktop-services)))
+```
+
+## Wrap service into container
+``` scheme
+(with-imported-modules
+ ’((gnu build linux-container))
+  (shepherd-service
+   (provision ’(bitlbee))
+   (requirement ’(loopback))
+   (start #~(make-forkexec-constructor/container
+	     (list #$(file-append bitlbee "/sbin/bitlbee")
+		   ...)))
+   (stop #~(make-kill-destructor))))
+```
+
+# How to pick right1?
+
 Nix vs Guix
 
 * Package manager vs SD
@@ -233,5 +322,16 @@ Nix vs Guix
 * Haskell vs Lisp
 * Diversity vs Liberty
 
+# Help
 
-guix pack --docker
+- #nixos, #guix on freenode
+- [https://www.gnu.org/software/guix/help/](https://www.gnu.org/software/guix/help/)
+- [https://nixos.org/nixos/support.html](https://nixos.org/nixos/support.html)
+- [Referenc card](https://www.gnu.org/software/guix/guix-refcard.pdf)
+
+# contact me
+
+- github: [abcdw](https://github.com/abcdw)
+- tga: [andrewtropin](https://t.me/andrewtropin)
+
+[github.com/abcdw/talks](https://github.com/abcdw/talks)

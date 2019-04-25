@@ -48,19 +48,25 @@
   <p class="date">April 25, 2019</p>
 </section>
 
-<section id="whoami" class="title-slide slide level1"><h1>whoami</h1><p>@<a href="https://github.com/abcdw">andrewtropin</a></p></section>
-<section id="whereis" class="title-slide slide level1"><h1>whereis</h1><p><a href="https://github.com/abcdw/talks">https://github.com/abcdw/talks</a></p></section>
-<section><section id="plan" class="title-slide slide level1 center"><h1>Plan</h1><!-- ## Here's a slide --></section><section id="plan-1" class="slide level2">
-<h2>Plan</h2>
+<section id="whereis" class="slide level2">
+<h2><code>whereis</code></h2>
+<p><a href="https://github.com/abcdw/talks">github.com/abcdw/talks</a></p>
+</section>
+<section id="whoami-who" class="slide level2">
+<h2><code>whoami &amp;&amp; who</code></h2>
 <ul>
+<li>github: <a href="https://github.com/abcdw">abcdw</a></li>
+<li>tg: <a href="https://t.me/andrewtropin">andrewtropin</a></li>
+</ul>
+</section>
+<section id="plan" class="title-slide slide level1 center"><h1>Plan</h1><ul>
 <li>Current state of system distributions</li>
 <li>State of art</li>
 <li>Guix perks</li>
 <li>How to choose?</li>
 <li>How to install?</li>
-</ul>
-</section></section>
-<section><section id="current-state" class="title-slide slide level1"><h1>Current state</h1></section><section id="what-sd-should-do" class="slide level2">
+</ul></section>
+<section><section id="current-state" class="title-slide slide level1"><h1>Current <a href="">state</a></h1></section><section id="what-sd-should-do" class="slide level2">
 <h2>What SD should do?</h2>
 <ul>
 <li>Software (de)installation</li>
@@ -71,26 +77,30 @@
 <p>Mutating global state using config files!</p>
 <pre class="shell"><code>sudo vim /etc/.../postgresql.conf
 sudo service postgresql restart</code></pre>
+<p>Which can conflict with maintainer version.</p>
 </section><section id="how-we-install-software" class="slide level2">
 <h2>How we install software?</h2>
 <p>Mutating global state using package managers!</p>
 <pre class="shell"><code>apt-get install python python-pip
 pip install wakatime
-snap install vscode</code></pre>
-</section><section id="how-we-deal-with-dependencies" class="slide level2">
-<h2>How we deal with dependencies?</h2>
+snap install vscode
+curl https://nixos.org/nix/install | sh
+./configure &amp;&amp; make &amp;&amp; make install</code></pre>
+<p>Which can’t be undone.</p>
+</section><section id="who-we-can-trust" class="slide level2">
+<h2>Who we can trust?</h2>
+<p>???</p>
+</section><section id="how-we-deal-with" class="slide level2">
+<h2>How we deal with</h2>
+<h3 id="dependencies-and-conflicts">dependencies and conflicts?</h3>
 <ul>
 <li>Try to make things consistent</li>
 <li>Static linking</li>
 <li>Custom prefix</li>
+<li>Give up</li>
 <li>Isolate environment</li>
 </ul>
 <p>Note: (virtualenv, node_modules, docker)</p>
-</section><section id="who-we-can-trust" class="slide level2">
-<h2>Who we can trust?</h2>
-<ul>
-<li>???</li>
-</ul>
 </section><section id="how-to-get-reproducible-environment" class="slide level2">
 <h2>How to get reproducible environment?</h2>
 <ul>
@@ -99,7 +109,7 @@ snap install vscode</code></pre>
 <li>shared env?</li>
 </ul>
 </section></section>
-<section id="state-of-the-art" class="title-slide slide level1"><h1>State of the art</h1></section>
+<section id="state-of-the-art" class="title-slide slide level1"><h1><del>State</del> of the art</h1></section>
 <section id="history" class="title-slide slide level1"><h1>History</h1></section>
 <section><section id="how-package-management-works" class="title-slide slide level1"><h1>How package management works</h1><ul>
 <li>No globals state (/bin, /usr/lib)</li>
@@ -123,7 +133,7 @@ guix package -u</code></pre>
 <pre class="shell"><code>guix environment --ad-hoc gcc@5.5.0 hello tree
 # --pure
 # --container
-# echo /gun/store/*</code></pre>
+# echo /gnu/store/*</code></pre>
 </section><section id="challenge" class="slide level2">
 <h2>Challenge</h2>
 <pre class="shell"><code>guix challenge bash</code></pre>
@@ -135,6 +145,7 @@ docker load -i</code></pre>
 </section><section id="garbage-collection" class="slide level2">
 <h2>Garbage collection</h2>
 <p>Remove only unused packages</p>
+<pre class="scheme"><code>guix gc</code></pre>
 </section><section id="package-definition" class="slide level2">
 <h2>Package definition</h2>
 <pre class="scheme"><code>(define-public hello
@@ -163,15 +174,14 @@ command-line arguments, multiple languages, and so on.&quot;)
 <h2>Import</h2>
 <p>guix import gem rails</p>
 </section></section>
-<section><section id="inside-system-distribution" class="title-slide slide level1"><h1>Inside system distribution</h1><ul>
-<li>Declarative</li>
-</ul></section><section id="init" class="slide level2">
+<section><section id="inside-system-distribution" class="title-slide slide level1"><h1>Inside system distribution</h1></section><section id="init" class="slide level2">
 <h2>Init?</h2>
 <pre class="shell"><code>cat $(which shepherd)</code></pre>
 </section><section id="system-configuration" class="slide level2">
 <h2>System configuration</h2>
 <p><a href="https://github.com/abcdw/configs/blob/master/guix/qemu.scm">~/configs/guix/qemu.scm</a></p>
-<pre class="shell"><code>guix system reconfigure ./config.scm</code></pre>
+<pre class="shell"><code>guix system reconfigure ./config.scm
+guix system search ssh</code></pre>
 </section><section id="services" class="slide level2">
 <h2>Services</h2>
 <pre class="scheme"><code>(services (cons* (dhcp-client-service)
@@ -185,29 +195,106 @@ command-line arguments, multiple languages, and so on.&quot;)
 </section><section id="explore" class="slide level2">
 <h2>Explore</h2>
 <pre class="shell"><code>guix build -S guix</code></pre>
-</section><section id="what-is-guix" class="slide level2">
+</section></section>
+<section><section id="recap" class="title-slide slide level1"><h1>Recap</h1></section><section id="what-is-guix" class="slide level2">
 <h2>What is guix?</h2>
 <ul>
 <li>Package definitions + bootstrap binaries</li>
 <li>Package manager + library</li>
 <li>GNU/Linux distro with declarative config</li>
 </ul>
+<p>on top of minimalistic language</p>
+</section><section id="multiple-versions" class="slide level2">
+<h2>Multiple versions</h2>
+<p>No DLL-hell</p>
+</section><section id="complete-dependencies" class="slide level2">
+<h2>Complete dependencies</h2>
+<p>No work-for-me packages from dirty envs</p>
+</section><section id="multi-user-support" class="slide level2">
+<h2>Multi-user support</h2>
+<p>No trojans, but user can install packages</p>
+</section><section id="atomic-upgrades-and-rollbacks" class="slide level2">
+<h2>Atomic upgrades and rollbacks</h2>
+<p>Switch symlinks is atomic</p>
+</section><section id="transparent-sourcebinary-deployment" class="slide level2">
+<h2>Transparent source/binary deployment</h2>
+<p><code>--no-substitute</code></p>
+</section><section id="pure-and-declarative" class="slide level2">
+<h2>Pure and Declarative</h2>
+<p>config -&gt; system</p>
+</section><section id="hackable-introspectable-and-uniform" class="slide level2">
+<h2>Hackable, introspectable and uniform</h2>
+<p>Learn the scheme - rule the system</p>
 </section></section>
-<section><section id="perks" class="title-slide slide level1"><h1>Perks</h1></section><section id="package-management" class="slide level2">
-<h2>Package management</h2>
-<h3 id="multiple-versions">Multiple versions</h3>
-<p>No DLL-hell ### Complete dependencies No work-for-me packages from dirty envs ### Multi-user support No trojans, but user can install packages ### Atomic upgrades and rollbacks Switch symlinks is atomic</p>
-<h3 id="transparent-sourcebinary-deployment">Transparent source/binary deployment</h3>
-<p>–no-substitute</p>
+<section id="problems" class="title-slide slide level1"><h1>Problems</h1></section>
+<section><section id="how-to-install" class="title-slide slide level1"><h1>How to install?</h1></section><section id="patition-hard-drive" class="slide level2">
+<h2>Patition hard drive</h2>
+</section><section id="create-system-configuration" class="slide level2">
+<h2>Create system configuration</h2>
+<pre class="scheme"><code>(operating-system
+ (host-name &quot;functional-machine&quot;)
+ (timezone &quot;Europe/Moscow&quot;)
+ (locale &quot;ru_RU.utf8&quot;)
+ (bootloader (grub-configuration (device &quot;/dev/sda&quot;)))
+ (file-systems (cons (file-system
+                      (device &quot;my-root&quot;)
+                      (title ’label)
+                      (mount-point &quot;/&quot;)
+                      (type &quot;ext4&quot;))
+                     %base-file-systems))
+ (users (cons (user-account
+               (name &quot;bob&quot;)
+               (group &quot;users&quot;)
+               (home-directory &quot;/home/bob&quot;))
+              %base-user-accounts))
+ (services (cons* (dhcp-client-service)
+                  (service openssh-service-type)
+                  %base-services)))</code></pre>
 </section></section>
-<section id="how-to-pick-a-distro-or-package-manager" class="title-slide slide level1"><h1>How to pick a distro or package manager?</h1><p>Nix vs Guix</p>
+<section><section id="how-to-configure" class="title-slide slide level1"><h1>How to configure?</h1></section><section id="define-more-services" class="slide level2">
+<h2>Define more services</h2>
+<pre class="scheme"><code>(service openssh-service-type
+         (openssh-configuration
+          (x11-forwarding? #t)
+          (permit-root-login ’without-password)))</code></pre>
+</section><section id="update-service-list" class="slide level2">
+<h2>Update service list</h2>
+<pre class="scheme"><code>(operating-system
+ ;; ...
+ (services (remove (lambda (service)
+                           (eq? ntp-service-type
+                                (service-kind service)))
+                   %desktop-services)))</code></pre>
+</section><section id="wrap-service-into-container" class="slide level2">
+<h2>Wrap service into container</h2>
+<pre class="scheme"><code>(with-imported-modules
+ ’((gnu build linux-container))
+  (shepherd-service
+   (provision ’(bitlbee))
+   (requirement ’(loopback))
+   (start #~(make-forkexec-constructor/container
+         (list #$(file-append bitlbee &quot;/sbin/bitlbee&quot;)
+           ...)))
+   (stop #~(make-kill-destructor))))</code></pre>
+</section></section>
+<section id="how-to-pick-right1" class="title-slide slide level1"><h1>How to pick right1?</h1><p>Nix vs Guix</p>
 <ul>
 <li>Package manager vs SD</li>
 <li>Mac vs Linux</li>
 <li>Haskell vs Lisp</li>
 <li>Diversity vs Liberty</li>
+</ul></section>
+<section id="help" class="title-slide slide level1"><h1>Help</h1><ul>
+<li>#nixos, #guix on freenode</li>
+<li><a href="https://www.gnu.org/software/guix/help/">https://www.gnu.org/software/guix/help/</a></li>
+<li><a href="https://nixos.org/nixos/support.html">https://nixos.org/nixos/support.html</a></li>
+<li><a href="https://www.gnu.org/software/guix/guix-refcard.pdf">Referenc card</a></li>
+</ul></section>
+<section id="contact-me" class="title-slide slide level1"><h1>contact me</h1><ul>
+<li>github: <a href="https://github.com/abcdw">abcdw</a></li>
+<li>tga: <a href="https://t.me/andrewtropin">andrewtropin</a></li>
 </ul>
-<p>guix pack –docker</p></section>
+<p><a href="https://github.com/abcdw/talks">github.com/abcdw/talks</a></p></section>
     </div>
   </div>
 

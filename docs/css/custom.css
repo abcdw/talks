@@ -28,6 +28,11 @@
     line-height: 1.2em !important;
 }
 
+.shell code {
+    font-size: 1.3em;
+    line-height: 2.0em !important;
+}
+
 .reveal h1,
 .reveal h2,
 .reveal h3,
