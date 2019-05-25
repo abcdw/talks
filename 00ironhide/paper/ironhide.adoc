@@ -1,0 +1,103 @@
+= Ironhide the data transformer
+Andrew Tropin <andrewtropin@gmail.com>
+1.0, May 25, 2019, test
+:toc:
+
+== Abstract
+
+abstract here
+
+== Introduction
+
+=== Motivation and contributions
+
+=== Subsection 1
+
+=== Subsection 2
+
+=== Ironhide
+
+=== Outilne
+
+== Section 1
+
+== Section 2
+
+== Ironhide
+=== Syntax
+
+----
+
+<data-object> ::= ?
+<natural-number> ::= ?
+<character> ::= ?
+<keyword> ::= ?
+
+# vector navigation
+<wildcard> ::= ":*"
+<index> ::= <natural-number>
+<vfiler> ::= <data-object>
+<vkey> ::= <wildcard> | <index>
+<vnav> ::= "[" <vkey> " " <vfilter>? "]"
+
+# Actually sight can be expressed as
+# {:ih/sight     :ihs/sight-name
+#  :sight-param1 :sight-value1}
+
+<sight> ::= ":ihs/" <character>*
+
+# map navigation
+<mkey> ::= <keyword>
+<mnav> ::= <mkey>
+
+# data structure navigation
+<pelem> ::= <mnav> | <vnav> | <sight>
+<path> ::= "[" (<pelem> " ")* "]"
+
+<data-source> ::= <keyword>
+
+<rule> ::=
+"{"
+	<data-source> " " <path>
+	<data-source> " " <path>
+	":ih/value" " "
+	"{"
+		<data-source> " " <path>
+		<data-source> " " <path>
+	"}"
+"}"
+
+<rules> ::= "[" <rule>* "]"
+
+<direction> ::= "[" <data-source> " " <data-source> "]"
+
+<data> ::=
+"{"
+	<data-source> " " <data-object>
+	<data-source> " " <data-object>
+"}"
+
+<values> ::= <data-object>
+
+<micros> ::= TBD
+<sights> ::= TBD
+
+<shell> ::=
+"{"
+	":ih/direction" " " <direction>
+	":ih/rules" " " <rules>
+	":ih/data" " " <data>
+	":ih/values" " " <values>
+	":ih/micros" " " <micros>
+	":ih/sights" " " <sights>
+"}"
+
+----
+
+== Experience
+
+== Related work
+
+== Extensions and Future Work
+
+== References
