@@ -1,0 +1,26 @@
+{
+  "name": "talks",
+  "version": "1.0.0",
+  "description": "trop.in/talks",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "light-server": "^2.6.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abcdw/talks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abcdw/talks/issues"
+  },
+  "homepage": "https://github.com/abcdw/talks#readme"
+}
