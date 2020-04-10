@@ -1,4 +1,4 @@
-#+TITLE: What is fupnctional programming?
+#+TITLE: What is functional programming?
 #+AUTHOR: Andrew Tropin
 #+EMAIL: andrew@trop.in
 

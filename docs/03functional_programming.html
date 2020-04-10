@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>What is fupnctional programming?</title>
+<title>What is functional programming?</title>
 <meta name="author" content="(Andrew Tropin)"/>
 <style type="text/css">
 .underline { text-decoration: underline; }
@@ -32,15 +32,15 @@
 </section>
 
 <section>
-<section id="slide-org57fba5b">
-<h2 id="org57fba5b">The Value of Values</h2>
+<section id="slide-orga421e82">
+<h2 id="orga421e82">The Value of Values</h2>
 <p>
 <a href="https://youtu.be/-6BsiVyC1kM">talk</a>
 </p>
 
 </section>
-<section id="slide-org9714f8c">
-<h3 id="org9714f8c">Value</h3>
+<section id="slide-org8e07ec3">
+<h3 id="org8e07ec3">Value</h3>
 <ul>
 <li>Immutable</li>
 <li>Semantically transparent</li>
@@ -48,8 +48,8 @@
 </ul>
 
 </section>
-<section id="slide-org66d052c">
-<h3 id="org66d052c">Places, variables and state</h3>
+<section id="slide-org7374aa1">
+<h3 id="org7374aa1">Places, variables and state</h3>
 <ul>
 <li>memory</li>
 <li>file system</li>
@@ -74,8 +74,8 @@ Stickers on the wall
 </aside>
 
 </section>
-<section id="slide-orge8f7ed5">
-<h3 id="orge8f7ed5">Email example</h3>
+<section id="slide-org999c229">
+<h3 id="org999c229">Email example</h3>
 <ul>
 <li class="fragment appear">10 minute ago: andrewtropin@gmail.com</li>
 <li class="fragment appear">02 minute ago: andrey@trop.in</li>
@@ -84,8 +84,8 @@ Stickers on the wall
 </ul>
 
 </section>
-<section id="slide-org54382b4">
-<h3 id="org54382b4">Value examples</h3>
+<section id="slide-org399fdbc">
+<h3 id="org399fdbc">Value examples</h3>
 <p>
 Simple
 </p>
@@ -117,8 +117,8 @@ Aggregated
 </section>
 </section>
 <section>
-<section id="slide-orgad25e4e">
-<h2 id="orgad25e4e">Information system</h2>
+<section id="slide-org60f0657">
+<h2 id="org60f0657">Information system</h2>
 <ul>
 <li>Interacts with places</li>
 <li>Uses values</li>
@@ -131,13 +131,13 @@ Aggregated
 </section>
 </section>
 <section>
-<section id="slide-org739ce53">
-<h2 id="org739ce53">Imperative programming</h2>
-<div class="outline-text-2" id="text-org739ce53">
+<section id="slide-org4c4831b">
+<h2 id="org4c4831b">Imperative programming</h2>
+<div class="outline-text-2" id="text-org4c4831b">
 </div>
 </section>
-<section id="slide-org3acacf2">
-<h3 id="org3acacf2">Imperative factorial</h3>
+<section id="slide-orgcb87d2d">
+<h3 id="orgcb87d2d">Imperative factorial</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = 23;
@@ -155,8 +155,8 @@ i++;
 </div>
 
 </section>
-<section id="slide-orgd06aedc">
-<h3 id="orgd06aedc">More structure</h3>
+<section id="slide-org0320f91">
+<h3 id="org0320f91">More structure</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = 23;
@@ -175,8 +175,8 @@ i++;
 </div>
 
 </section>
-<section id="slide-org5e4e8ca">
-<h3 id="org5e4e8ca">Move flow control</h3>
+<section id="slide-org2625003">
+<h3 id="org2625003">Move flow control</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = 23;
@@ -193,8 +193,8 @@ i++;
 </div>
 
 </section>
-<section id="slide-org9bc690b">
-<h3 id="org9bc690b">Procedural</h3>
+<section id="slide-org210748a">
+<h3 id="org210748a">Procedural</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">f</span>;
@@ -215,8 +215,8 @@ i++;
 </div>
 
 </section>
-<section id="slide-org67ab61b">
-<h3 id="org67ab61b">Sum up</h3>
+<section id="slide-org07127ab">
+<h3 id="org07127ab">Sum up</h3>
 <ul>
 <li>Statements changes the state</li>
 <li>Statements depends on the state</li>
@@ -233,13 +233,13 @@ Persists values somewhere.
 </section>
 </section>
 <section>
-<section id="slide-org0341bfd">
-<h2 id="org0341bfd">Functional programming</h2>
-<div class="outline-text-2" id="text-org0341bfd">
+<section id="slide-org2dc3591">
+<h2 id="org2dc3591">Functional programming</h2>
+<div class="outline-text-2" id="text-org2dc3591">
 </div>
 </section>
-<section id="slide-org8ff5836">
-<h3 id="org8ff5836">Expressions</h3>
+<section id="slide-org1556d47">
+<h3 id="org1556d47">Expressions</h3>
 <p>
 Something that can be evaluated and produce the value.
 </p>
@@ -250,8 +250,8 @@ Something that can be evaluated and produce the value.
 </div>
 
 </section>
-<section id="slide-org762e717">
-<h3 id="org762e717">Expressions 2</h3>
+<section id="slide-org9613dd3">
+<h3 id="org9613dd3">Expressions 2</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim>2 + 2 * 3
@@ -265,8 +265,8 @@ Something that can be evaluated and produce the value.
 </div>
 
 </section>
-<section id="slide-org76adac6">
-<h3 id="org76adac6">Expressions evaluation</h3>
+<section id="slide-org048f8ce">
+<h3 id="org048f8ce">Expressions evaluation</h3>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><code trim><span style="color: #707183;">(</span>+ 2 <span style="color: #7388D6;">(</span>* 2 3<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
@@ -286,8 +286,8 @@ Something that can be evaluated and produce the value.
 </div>
 
 </section>
-<section id="slide-org2ae82e1">
-<h3 id="org2ae82e1">Factorial expressions</h3>
+<section id="slide-org0ac8f52">
+<h3 id="org0ac8f52">Factorial expressions</h3>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><code trim><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">factorial</span> <span style="color: #7388D6;">[</span>n<span style="color: #7388D6;">]</span>
@@ -301,8 +301,8 @@ Something that can be evaluated and produce the value.
 </div>
 
 </section>
-<section id="slide-org6cbb50e">
-<h3 id="org6cbb50e">Magic do expression</h3>
+<section id="slide-org9779679">
+<h3 id="org9779679">Magic do expression</h3>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><code trim><span style="color: #707183;">(</span><span style="color: #0000FF;">do</span>
@@ -313,8 +313,8 @@ Something that can be evaluated and produce the value.
 </div>
 
 </section>
-<section id="slide-org1bb81ee">
-<h3 id="org1bb81ee">Functions</h3>
+<section id="slide-org1063150">
+<h3 id="org1063150">Functions</h3>
 
 <div class="figure">
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Function_color_example_3.svg/1024px-Function_color_example_3.svg.png" alt="1024px-Function_color_example_3.svg.png" height="200px" />
@@ -337,8 +337,8 @@ with exactly one element of the second.</li>
 </aside>
 
 </section>
-<section id="slide-org4dfde0e">
-<h3 id="org4dfde0e">Function example 1</h3>
+<section id="slide-orga1e4fde">
+<h3 id="orga1e4fde">Function example 1</h3>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><code trim><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">figure-&gt;color</span> <span style="color: #7388D6;">[</span>figure<span style="color: #7388D6;">]</span>
@@ -356,8 +356,8 @@ with exactly one element of the second.</li>
 </div>
 
 </section>
-<section id="slide-org1e3d807">
-<h3 id="org1e3d807">Function example 2</h3>
+<section id="slide-org04fe3fd">
+<h3 id="org04fe3fd">Function example 2</h3>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><code trim><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">figure-&gt;color</span>
@@ -372,8 +372,8 @@ with exactly one element of the second.</li>
 </div>
 
 </section>
-<section id="slide-orgcd98a21">
-<h3 id="orgcd98a21">Procedures vs Functions</h3>
+<section id="slide-org0168035">
+<h3 id="org0168035">Procedures vs Functions</h3>
 
 <div class="figure">
 <p><img src="./images/03/diag.png" alt="diag.png" height="500px" />
@@ -383,13 +383,13 @@ with exactly one element of the second.</li>
 </section>
 </section>
 <section>
-<section id="slide-org2856c34">
-<h2 id="org2856c34">There is no VS</h2>
-<div class="outline-text-2" id="text-org2856c34">
+<section id="slide-org4f4ee96">
+<h2 id="org4f4ee96">There is no VS</h2>
+<div class="outline-text-2" id="text-org4f4ee96">
 </div>
 </section>
-<section id="slide-orga62f9b3">
-<h3 id="orga62f9b3">Function + Procedures</h3>
+<section id="slide-org3b2dcd2">
+<h3 id="org3b2dcd2">Function + Procedures</h3>
 <p>
 Both can be useful
 </p>
@@ -397,8 +397,8 @@ Both can be useful
 </section>
 </section>
 <section>
-<section id="slide-org5e6a762">
-<h2 id="org5e6a762">Contacts</h2>
+<section id="slide-orgf83bb85">
+<h2 id="orgf83bb85">Contacts</h2>
 <ul>
 <li>andrew@trop.in</li>
 <li>tg: @andrewtropin</li>
