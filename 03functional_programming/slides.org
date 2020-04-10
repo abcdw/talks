@@ -1,0 +1,186 @@
+#+TITLE: What is fupnctional programming?
+#+AUTHOR: Andrew Tropin
+#+EMAIL: andrew@trop.in
+
+#+REVEAL_THEME: white
+#+EXPORT_FILE_NAME: ../docs/03functional_programming
+#+REVEAL_INIT_OPTIONS: hash:true, slideNumber:true, controls:false
+#+REVEAL_EXTRA_CSS: css/custom.css
+#+REVEAL_TITLE_SLIDE: <h2 class="title">Functional programming:</h2> <h3 class="subtitle">What is it?</h3>
+#+REVEAL_TITLE_SLIDE: <img class="title-image" height="200px" src="images/03/lambda.png"><p class="author">%a<p><p class="date">2020-04-11</p>
+
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+
+* Functional programming
+** Function vs Procedure
+:PROPERTIES:
+:CUSTOM_ID: current
+:END:
+- Evaluation vs Interpretation
+- Expression vs Statement
+- Values vs Variables
+** Value
+- Immutable
+- Semantically transparent
+
+[[https://youtu.be/-6BsiVyC1kM][The Value of Values]]
+** Value examples
+Simple
+#+BEGIN_SRC json
+2
+"hello"
+#+END_SRC
+
+Complex
+#+BEGIN_SRC json
+[3, 4]
+#+END_SRC
+
+Aggregated
+#+BEGIN_SRC json
+{"a": ["b", 7]}
+#+END_SRC
+
+** Places
+- memory
+- file system
+- database
+- network service
+- console
+
+Variable is a ref to a place where the value stored
+
+** Facts example
+Friends email
+
+** Imperative programming
+*** Imperative factorial
+#+BEGIN_SRC c
+int n = 23;
+int f = 1;
+int i = 1;
+
+iter:
+f = f * i;
+i++;
+if (i <= n)
+  goto iter;
+
+print f;
+#+END_SRC
+
+*** More structure
+#+BEGIN_SRC c
+int n = 23;
+int f = 1;
+int i = 1;
+
+iter:
+if (i <= n) {
+  f = f * i;
+  i++;
+  goto iter;
+}
+
+print f;
+#+END_SRC
+
+*** Move flow control
+#+BEGIN_SRC c
+int n = 23;
+int f = 1;
+int i;
+
+for (i = 1; i <= n;) {
+  f = f * i;
+  i++;
+}
+
+print f;
+#+END_SRC
+
+*** Procedural
+#+BEGIN_SRC c
+int f;
+
+int factorial(int n) {
+  int i;
+  for (i = 1; i <= n; i++) {
+    f = f * i;
+  }
+}
+
+int main() {
+  f = 1;
+  factorial(23);
+  printf("%d", f)
+}
+#+END_SRC
+
+** Sum up
+- Statements changes the State
+- Procedure is a collection of statements
+#+BEGIN_NOTES
+Persists values somewhere.
+#+END_NOTES
+
+** Expressions
+Something that can be evaluated and produce the value.
+#+BEGIN_SRC c
+2 + 2
+#+END_SRC
+
+** Expressions 2
+#+BEGIN_SRC c
+2 + 2 * 3
+#+END_SRC
+#+BEGIN_SRC scheme
+(- (+ 2 2) 3)
+#+END_SRC
+** Functions
+https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Injection_keine_Injektion_2a.svg/200px-Injection_keine_Injektion_2a.svg.png
+- In mathematical sense
+- In CS sense
+
+#+BEGIN_NOTES
+- Relationship between two sets, associates every element of first set
+  with exactly one element of the second.
+- Computation that calculates the value based on input evaluating expressions.
+#+END_NOTES
+* There is no VS
+** Function + Procedures
+We need both
+* Information system
+- Interacts with places
+- Uses facts
+- Produces values
+- Supports Decision making
+
+** Developer immutable examples
+- logs
+- source control
+
+* How to deal with FP in real world?
+** Passing by value
+Whaaat?
+** Persistent data structures
+** Let's do FP, when it's easy and everything else as we want
+* Benefits and tradeoffs
+** Green vs Red paper
+** Laziness and memoization
+* Slide 2
+#+BEGIN_SRC clojure
+(defn example [a b]
+  (println "test")
+  (+ a b))
+;; comment here
+
+(defn another-fn [here]
+  (println "test"))
+#+END_SRC
+
+** Test subslide 2
+here is a content
+* Slide 3
+pretty empty rn

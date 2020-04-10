@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>What is fupnctional programming?</title>
+<meta name="author" content="(Andrew Tropin)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/white.css" id="theme"/>
+
+<link rel="stylesheet" href="css/custom.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h2 class="title">Functional programming:</h2> <h3 class="subtitle">What is it?</h3>
+<img class="title-image" height="200px" src="images/03/lambda.png"><p class="author">Andrew Tropin<p><p class="date">2020-04-11</p>
+</section>
+
+<section>
+<section id="slide-orgbbd1c53">
+<h2 id="orgbbd1c53">Functional programming</h2>
+<div class="outline-text-2" id="text-orgbbd1c53">
+</div>
+</section>
+<section id="slide-current">
+<h3 id="current"><a id="org0635bd0"></a>Function vs Procedure</h3>
+<ul>
+<li>Evaluation vs Interpretation</li>
+<li>Expression vs Statement</li>
+<li>Values vs Variables</li>
+
+</ul>
+</section>
+<section id="slide-org3385235">
+<h3 id="org3385235">Value</h3>
+<ul>
+<li>Immutable</li>
+<li>Semantically transparent</li>
+
+</ul>
+
+<p>
+<a href="https://youtu.be/-6BsiVyC1kM">The Value of Values</a>
+</p>
+</section>
+<section id="slide-orga3f7933">
+<h3 id="orga3f7933">Value examples</h3>
+<p>
+Simple
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-json"><code trim><span style="color: #D0372D;">2</span>
+<span style="color: #008000;">"hello"</span>
+</code></pre>
+</div>
+
+<p>
+Complex
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-json"><code trim>[<span style="color: #D0372D;">3</span>, <span style="color: #D0372D;">4</span>]
+</code></pre>
+</div>
+
+<p>
+Aggregated
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-json"><code trim>{<span style="color: #0000FF;">"a"</span>: [<span style="color: #008000;">"b"</span>, <span style="color: #D0372D;">7</span>]}
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgabf38e4">
+<h3 id="orgabf38e4">Places</h3>
+<ul>
+<li>memory</li>
+<li>file system</li>
+<li>database</li>
+<li>network service</li>
+<li>console</li>
+
+</ul>
+
+<p>
+Variable is a ref to a place where the value stored
+</p>
+
+</section>
+<section id="slide-org6967b90">
+<h3 id="org6967b90">Facts example</h3>
+<p>
+Friends email
+</p>
+
+</section>
+<section id="slide-org1c68e0b">
+<h3 id="org1c68e0b">Imperative programming</h3>
+<div class="outline-text-3" id="text-org1c68e0b">
+</div>
+</section>
+<section id="slide-orga407029">
+<h4 id="orga407029">Imperative factorial</h4>
+<div class="org-src-container">
+
+<pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = 23;
+<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">f</span> = 1;
+<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 1;
+
+<span style="color: #D0372D;">iter</span>:
+f = f * i;
+i++;
+<span style="color: #0000FF;">if</span> (i &lt;= n)
+  <span style="color: #0000FF;">goto</span> <span style="color: #D0372D;">iter</span>;
+
+<span style="color: #6434A3;">print</span> <span style="color: #BA36A5;">f</span>;
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org64e46c4">
+<h4 id="org64e46c4">More structure</h4>
+<div class="org-src-container">
+
+<pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = 23;
+<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">f</span> = 1;
+<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 1;
+
+<span style="color: #D0372D;">iter</span>:
+<span style="color: #0000FF;">if</span> (i &lt;= n) {
+  f = f * i;
+  i++;
+  <span style="color: #0000FF;">goto</span> <span style="color: #D0372D;">iter</span>;
+}
+
+<span style="color: #6434A3;">print</span> <span style="color: #BA36A5;">f</span>;
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgeebbb20">
+<h4 id="orgeebbb20">Move flow control</h4>
+<div class="org-src-container">
+
+<pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = 23;
+<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">f</span> = 1;
+<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span>;
+
+<span style="color: #0000FF;">for</span> (i = 1; i &lt;= n;) {
+  f = f * i;
+  i++;
+}
+
+<span style="color: #6434A3;">print</span> <span style="color: #BA36A5;">f</span>;
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org46dcec2">
+<h4 id="org46dcec2">Procedural</h4>
+<div class="org-src-container">
+
+<pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">f</span>;
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">factorial</span>(<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span>) {
+  <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span>;
+  <span style="color: #0000FF;">for</span> (i = 1; i &lt;= n; i++) {
+    f = f * i;
+  }
+}
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+  f = 1;
+  factorial(23);
+  printf(<span style="color: #008000;">"%d"</span>, f)
+}
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org3979131">
+<h3 id="org3979131">Sum up</h3>
+<ul>
+<li>Statements changes the State</li>
+<li>Procedure is a collection of statements</li>
+
+</ul>
+<aside class="notes">
+<p>
+Persists values somewhere.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orgffaa961">
+<h3 id="orgffaa961">Expressions</h3>
+<p>
+Something that can be evaluated and produce the value.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-c"><code trim>2 + 2
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org90946db">
+<h3 id="org90946db">Expressions 2</h3>
+<div class="org-src-container">
+
+<pre  class="src src-c"><code trim>2 + 2 * 3
+</code></pre>
+</div>
+<div class="org-src-container">
+
+<pre  class="src src-scheme"><code trim>(- (+ 2 2) 3)
+</code></pre>
+</div>
+</section>
+<section id="slide-orge4b13df">
+<h3 id="orge4b13df">Functions</h3>
+
+<div class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Injection_keine_Injektion_2a.svg/200px-Injection_keine_Injektion_2a.svg.png" alt="200px-Injection_keine_Injektion_2a.svg.png" />
+</p>
+</div>
+<ul>
+<li>In mathematical sense</li>
+<li>In CS sense</li>
+
+</ul>
+
+<aside class="notes">
+<ul>
+<li>Relationship between two sets, associates every element of first set
+with exactly one element of the second.</li>
+<li>Computation that calculates the value based on input evaluating expressions.</li>
+
+</ul>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org7909d68">
+<h2 id="org7909d68">There is no VS</h2>
+<div class="outline-text-2" id="text-org7909d68">
+</div>
+</section>
+<section id="slide-orgc45e170">
+<h3 id="orgc45e170">Function + Procedures</h3>
+<p>
+We need both
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org7a66990">
+<h2 id="org7a66990">Information system</h2>
+<ul>
+<li>Interacts with places</li>
+<li>Uses facts</li>
+<li>Produces values</li>
+<li>Supports Decision making</li>
+
+</ul>
+
+</section>
+<section id="slide-org7dfb47c">
+<h3 id="org7dfb47c">Developer immutable examples</h3>
+<ul>
+<li>logs</li>
+<li>source control</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orga687999">
+<h2 id="orga687999">How to deal with FP in real world?</h2>
+<div class="outline-text-2" id="text-orga687999">
+</div>
+</section>
+<section id="slide-org371fce4">
+<h3 id="org371fce4">Passing by value</h3>
+<p>
+Whaaat?
+</p>
+</section>
+<section id="slide-org48aa152">
+<h3 id="org48aa152">Persistent data structures</h3>
+</section>
+<section id="slide-orge77ea2a">
+<h3 id="orge77ea2a">Let's do FP, when it's easy and everything else as we want</h3>
+</section>
+</section>
+<section>
+<section id="slide-org85cba50">
+<h2 id="org85cba50">Benefits and tradeoffs</h2>
+<div class="outline-text-2" id="text-org85cba50">
+</div>
+</section>
+<section id="slide-org6c3189f">
+<h3 id="org6c3189f">Green vs Red paper</h3>
+</section>
+<section id="slide-orgad552de">
+<h3 id="orgad552de">Laziness and memoization</h3>
+</section>
+</section>
+<section>
+<section id="slide-org0aae646">
+<h2 id="org0aae646">Slide 2</h2>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><code trim><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">example</span> <span style="color: #7388D6;">[</span>a b<span style="color: #7388D6;">]</span>
+  <span style="color: #7388D6;">(</span>println <span style="color: #008000;">"test"</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span>+ a b<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">comment here</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">another-fn</span> <span style="color: #7388D6;">[</span>here<span style="color: #7388D6;">]</span>
+  <span style="color: #7388D6;">(</span>println <span style="color: #008000;">"test"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orga791906">
+<h3 id="orga791906">Test subslide 2</h3>
+<p>
+here is a content
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org9eb32f7">
+<h2 id="org9eb32f7">Slide 3</h2>
+<p>
+pretty empty rn
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+hash:true, slideNumber:true, controls:false,
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
