@@ -1,3 +1,2 @@
 * Materials for given talks
-
-- [Guix and Nix](https://abcdw.github.io/talks/02guix_and_nix.html) OSes: functional approach
+- [[https://abcdw.github.io/talks/02guix_and_nix.html][Guix and Nix]] OSes: functional approach
