@@ -234,8 +234,9 @@ https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Function_color_example
 Both can be useful
 
 * Contacts
-- andrew@trop.in
-- tg: @andrewtropin
+- [[mailto:andrew@trop.in][andrew@trop.in]]
+- tg: [[https://t.me/tropin_channel][@tropin_channel]]
+- github: [[https://github.com/abcdw][@abcdw]]
 
 * noexport                                                         :noexport:
 ** Benefits and tradeoffs
