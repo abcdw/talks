@@ -12,11 +12,7 @@
 #+OPTIONS: num:nil
 #+OPTIONS: toc:nil
 
-* Functional programming
-** Function vs Procedure
-:PROPERTIES:
-:CUSTOM_ID: current
-:END:
+* Function vs Procedure
 - Evaluation vs Interpretation
 - Expression vs Statement
 - Values vs Variables
@@ -42,7 +38,7 @@ Aggregated
 {"a": ["b", 7]}
 #+END_SRC
 
-** Places
+** Places and vars
 - memory
 - file system
 - database
@@ -52,8 +48,8 @@ Aggregated
 Variable is a ref to a place where the value stored
 
 ** Facts example
-Friends email
-
+- andrewtropin@gmail.com
+- andrew@trop.in
 ** Imperative programming
 *** Imperative factorial
 #+BEGIN_SRC c
@@ -135,52 +131,75 @@ Something that can be evaluated and produce the value.
 #+BEGIN_SRC c
 2 + 2 * 3
 #+END_SRC
+
+#+ATTR_REVEAL: :frag (appear)
 #+BEGIN_SRC scheme
-(- (+ 2 2) 3)
+(+  2 (* 2 3))
 #+END_SRC
+
+** Expressions evaluation
+#+BEGIN_SRC scheme
+(+ 2 (* 2 3))
+#+END_SRC
+
+#+ATTR_REVEAL: :frag (appear)
+#+BEGIN_SRC scheme
+(+ 2 6)
+#+END_SRC
+
+#+ATTR_REVEAL: :frag (appear)
+#+BEGIN_SRC scheme
+8
+#+END_SRC
+
+** Magic do expression
+#+BEGIN_SRC scheme
+(do
+ (+ 2 2)
+ (* 3 5))
+#+END_SRC
+
+** Expressions
+#+BEGIN_SRC scheme
+(+ 2 (* 2 3))
+#+END_SRC
+
+#+BEGIN_SRC scheme
+(add 2 (mult 2 3))
+#+END_SRC
+
 ** Functions
-https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Injection_keine_Injektion_2a.svg/200px-Injection_keine_Injektion_2a.svg.png
+#+attr_html: :height 200px
+https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Function_color_example_3.svg/1024px-Function_color_example_3.svg.png
 - In mathematical sense
 - In CS sense
 
 #+BEGIN_NOTES
 - Relationship between two sets, associates every element of first set
   with exactly one element of the second.
-- Computation that calculates the value based on input evaluating expressions.
+- Computation that calculates the value based on input, evaluating expressions.
 #+END_NOTES
+
+** Functions vs Procedures
+#+attr_html: :height 500px
+[[./images/03/diag.png]]
+
 * There is no VS
 ** Function + Procedures
-We need both
-* Information system
+Both are useful
+** Information system
 - Interacts with places
-- Uses facts
+- Uses values
 - Produces values
 - Supports Decision making
 
-** Developer immutable examples
-- logs
-- source control
+* Contacts
+- andrew@trop.in
+- tg: @andrewtropin
+* FAQ
+- How to deal with values?
+Persistent data structures
 
-* How to deal with FP in real world?
-** Passing by value
-Whaaat?
-** Persistent data structures
-** Let's do FP, when it's easy and everything else as we want
 * Benefits and tradeoffs
 ** Green vs Red paper
 ** Laziness and memoization
-* Slide 2
-#+BEGIN_SRC clojure
-(defn example [a b]
-  (println "test")
-  (+ a b))
-;; comment here
-
-(defn another-fn [here]
-  (println "test"))
-#+END_SRC
-
-** Test subslide 2
-here is a content
-* Slide 3
-pretty empty rn

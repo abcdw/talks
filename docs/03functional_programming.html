@@ -32,13 +32,8 @@
 </section>
 
 <section>
-<section id="slide-orgbbd1c53">
-<h2 id="orgbbd1c53">Functional programming</h2>
-<div class="outline-text-2" id="text-orgbbd1c53">
-</div>
-</section>
-<section id="slide-current">
-<h3 id="current"><a id="org0635bd0"></a>Function vs Procedure</h3>
+<section id="slide-org97d1e79">
+<h2 id="org97d1e79">Function vs Procedure</h2>
 <ul>
 <li>Evaluation vs Interpretation</li>
 <li>Expression vs Statement</li>
@@ -46,8 +41,8 @@
 
 </ul>
 </section>
-<section id="slide-org3385235">
-<h3 id="org3385235">Value</h3>
+<section id="slide-orgbec2d85">
+<h3 id="orgbec2d85">Value</h3>
 <ul>
 <li>Immutable</li>
 <li>Semantically transparent</li>
@@ -58,8 +53,8 @@
 <a href="https://youtu.be/-6BsiVyC1kM">The Value of Values</a>
 </p>
 </section>
-<section id="slide-orga3f7933">
-<h3 id="orga3f7933">Value examples</h3>
+<section id="slide-org2c0ff76">
+<h3 id="org2c0ff76">Value examples</h3>
 <p>
 Simple
 </p>
@@ -89,8 +84,8 @@ Aggregated
 </div>
 
 </section>
-<section id="slide-orgabf38e4">
-<h3 id="orgabf38e4">Places</h3>
+<section id="slide-orgf0c3118">
+<h3 id="orgf0c3118">Places and vars</h3>
 <ul>
 <li>memory</li>
 <li>file system</li>
@@ -105,20 +100,21 @@ Variable is a ref to a place where the value stored
 </p>
 
 </section>
-<section id="slide-org6967b90">
-<h3 id="org6967b90">Facts example</h3>
-<p>
-Friends email
-</p>
+<section id="slide-org1be0d3d">
+<h3 id="org1be0d3d">Facts example</h3>
+<ul>
+<li>andrewtropin@gmail.com</li>
+<li>andrew@trop.in</li>
 
+</ul>
 </section>
-<section id="slide-org1c68e0b">
-<h3 id="org1c68e0b">Imperative programming</h3>
-<div class="outline-text-3" id="text-org1c68e0b">
+<section id="slide-orgac7be74">
+<h3 id="orgac7be74">Imperative programming</h3>
+<div class="outline-text-3" id="text-orgac7be74">
 </div>
 </section>
-<section id="slide-orga407029">
-<h4 id="orga407029">Imperative factorial</h4>
+<section id="slide-org5da5f52">
+<h4 id="org5da5f52">Imperative factorial</h4>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = 23;
@@ -136,8 +132,8 @@ i++;
 </div>
 
 </section>
-<section id="slide-org64e46c4">
-<h4 id="org64e46c4">More structure</h4>
+<section id="slide-org7e5d852">
+<h4 id="org7e5d852">More structure</h4>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = 23;
@@ -156,8 +152,8 @@ i++;
 </div>
 
 </section>
-<section id="slide-orgeebbb20">
-<h4 id="orgeebbb20">Move flow control</h4>
+<section id="slide-org7771d61">
+<h4 id="org7771d61">Move flow control</h4>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = 23;
@@ -174,8 +170,8 @@ i++;
 </div>
 
 </section>
-<section id="slide-org46dcec2">
-<h4 id="org46dcec2">Procedural</h4>
+<section id="slide-orgf908efa">
+<h4 id="orgf908efa">Procedural</h4>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">f</span>;
@@ -196,8 +192,8 @@ i++;
 </div>
 
 </section>
-<section id="slide-org3979131">
-<h3 id="org3979131">Sum up</h3>
+<section id="slide-org904538c">
+<h3 id="org904538c">Sum up</h3>
 <ul>
 <li>Statements changes the State</li>
 <li>Procedure is a collection of statements</li>
@@ -211,8 +207,8 @@ Persists values somewhere.
 </aside>
 
 </section>
-<section id="slide-orgffaa961">
-<h3 id="orgffaa961">Expressions</h3>
+<section id="slide-orgb5c2ec6">
+<h3 id="orgb5c2ec6">Expressions</h3>
 <p>
 Something that can be evaluated and produce the value.
 </p>
@@ -223,24 +219,73 @@ Something that can be evaluated and produce the value.
 </div>
 
 </section>
-<section id="slide-org90946db">
-<h3 id="org90946db">Expressions 2</h3>
+<section id="slide-org9f24583">
+<h3 id="org9f24583">Expressions 2</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim>2 + 2 * 3
 </code></pre>
 </div>
+
 <div class="org-src-container">
 
-<pre  class="src src-scheme"><code trim>(- (+ 2 2) 3)
+<pre  class="fragment (appear)"><code trim>(+  2 (* 2 3))
 </code></pre>
 </div>
+
 </section>
-<section id="slide-orge4b13df">
-<h3 id="orge4b13df">Functions</h3>
+<section id="slide-org19d5693">
+<h3 id="org19d5693">Expressions evaluation</h3>
+<div class="org-src-container">
+
+<pre  class="src src-scheme"><code trim>(+ 2 (* 2 3))
+</code></pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="fragment (appear)"><code trim>(+ 2 6)
+</code></pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="fragment (appear)"><code trim>8
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org6b7f662">
+<h3 id="org6b7f662">Magic do expression</h3>
+<div class="org-src-container">
+
+<pre  class="src src-scheme"><code trim>(<span style="color: #0000FF;">do</span>
+ (+ 2 2)
+ (* 3 5))
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org08a9b6d">
+<h3 id="org08a9b6d">Expressions</h3>
+<div class="org-src-container">
+
+<pre  class="src src-scheme"><code trim>(+ 2 (* 2 3))
+</code></pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="src src-scheme"><code trim>(add 2 (mult 2 3))
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org171812f">
+<h3 id="org171812f">Functions</h3>
 
 <div class="figure">
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Injection_keine_Injektion_2a.svg/200px-Injection_keine_Injektion_2a.svg.png" alt="200px-Injection_keine_Injektion_2a.svg.png" />
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Function_color_example_3.svg/1024px-Function_color_example_3.svg.png" alt="1024px-Function_color_example_3.svg.png" height="200px" />
 </p>
 </div>
 <ul>
@@ -253,109 +298,81 @@ Something that can be evaluated and produce the value.
 <ul>
 <li>Relationship between two sets, associates every element of first set
 with exactly one element of the second.</li>
-<li>Computation that calculates the value based on input evaluating expressions.</li>
+<li>Computation that calculates the value based on input, evaluating expressions.</li>
 
 </ul>
 
 </aside>
+
+</section>
+<section id="slide-org7379e6b">
+<h3 id="org7379e6b">Functions vs Procedures</h3>
+
+<div class="figure">
+<p><img src="./images/03/diag.png" alt="diag.png" height="500px" />
+</p>
+</div>
+
 </section>
 </section>
 <section>
-<section id="slide-org7909d68">
-<h2 id="org7909d68">There is no VS</h2>
-<div class="outline-text-2" id="text-org7909d68">
+<section id="slide-orgaba81d0">
+<h2 id="orgaba81d0">There is no VS</h2>
+<div class="outline-text-2" id="text-orgaba81d0">
 </div>
 </section>
-<section id="slide-orgc45e170">
-<h3 id="orgc45e170">Function + Procedures</h3>
+<section id="slide-orgfdca13d">
+<h3 id="orgfdca13d">Function + Procedures</h3>
 <p>
-We need both
+Both are useful
 </p>
 </section>
-</section>
-<section>
-<section id="slide-org7a66990">
-<h2 id="org7a66990">Information system</h2>
+<section id="slide-orgbf28266">
+<h3 id="orgbf28266">Information system</h3>
 <ul>
 <li>Interacts with places</li>
-<li>Uses facts</li>
+<li>Uses values</li>
 <li>Produces values</li>
 <li>Supports Decision making</li>
 
 </ul>
 
 </section>
-<section id="slide-org7dfb47c">
-<h3 id="org7dfb47c">Developer immutable examples</h3>
+</section>
+<section>
+<section id="slide-orgf2cbfaa">
+<h2 id="orgf2cbfaa">Contacts</h2>
 <ul>
-<li>logs</li>
-<li>source control</li>
+<li>andrew@trop.in</li>
+<li>tg: @andrewtropin</li>
 
 </ul>
+</section>
+</section>
+<section>
+<section id="slide-orgf59c426">
+<h2 id="orgf59c426">FAQ</h2>
+<ul>
+<li>How to deal with values?</li>
+
+</ul>
+<p>
+Persistent data structures
+</p>
 
 </section>
 </section>
 <section>
-<section id="slide-orga687999">
-<h2 id="orga687999">How to deal with FP in real world?</h2>
-<div class="outline-text-2" id="text-orga687999">
+<section id="slide-org9054f61">
+<h2 id="org9054f61">Benefits and tradeoffs</h2>
+<div class="outline-text-2" id="text-org9054f61">
 </div>
 </section>
-<section id="slide-org371fce4">
-<h3 id="org371fce4">Passing by value</h3>
-<p>
-Whaaat?
-</p>
+<section id="slide-org902ee20">
+<h3 id="org902ee20">Green vs Red paper</h3>
 </section>
-<section id="slide-org48aa152">
-<h3 id="org48aa152">Persistent data structures</h3>
-</section>
-<section id="slide-orge77ea2a">
-<h3 id="orge77ea2a">Let's do FP, when it's easy and everything else as we want</h3>
-</section>
-</section>
-<section>
-<section id="slide-org85cba50">
-<h2 id="org85cba50">Benefits and tradeoffs</h2>
-<div class="outline-text-2" id="text-org85cba50">
-</div>
-</section>
-<section id="slide-org6c3189f">
-<h3 id="org6c3189f">Green vs Red paper</h3>
-</section>
-<section id="slide-orgad552de">
-<h3 id="orgad552de">Laziness and memoization</h3>
-</section>
-</section>
-<section>
-<section id="slide-org0aae646">
-<h2 id="org0aae646">Slide 2</h2>
-<div class="org-src-container">
-
-<pre  class="src src-clojure"><code trim><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">example</span> <span style="color: #7388D6;">[</span>a b<span style="color: #7388D6;">]</span>
-  <span style="color: #7388D6;">(</span>println <span style="color: #008000;">"test"</span><span style="color: #7388D6;">)</span>
-  <span style="color: #7388D6;">(</span>+ a b<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">comment here</span>
-
-<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">another-fn</span> <span style="color: #7388D6;">[</span>here<span style="color: #7388D6;">]</span>
-  <span style="color: #7388D6;">(</span>println <span style="color: #008000;">"test"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
-</code></pre>
-</div>
-
-</section>
-<section id="slide-orga791906">
-<h3 id="orga791906">Test subslide 2</h3>
-<p>
-here is a content
-</p>
-</section>
-</section>
-<section>
-<section id="slide-org9eb32f7">
-<h2 id="org9eb32f7">Slide 3</h2>
-<p>
-pretty empty rn
-</p>
+<section id="slide-orga205a47">
+<h3 id="orga205a47">Laziness and memoization</h3>
 </section>
 </section>
 </div>
