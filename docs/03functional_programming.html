@@ -32,29 +32,60 @@
 </section>
 
 <section>
-<section id="slide-org97d1e79">
-<h2 id="org97d1e79">Function vs Procedure</h2>
-<ul>
-<li>Evaluation vs Interpretation</li>
-<li>Expression vs Statement</li>
-<li>Values vs Variables</li>
+<section id="slide-org57fba5b">
+<h2 id="org57fba5b">The Value of Values</h2>
+<p>
+<a href="https://youtu.be/-6BsiVyC1kM">talk</a>
+</p>
 
-</ul>
 </section>
-<section id="slide-orgbec2d85">
-<h3 id="orgbec2d85">Value</h3>
+<section id="slide-org9714f8c">
+<h3 id="org9714f8c">Value</h3>
 <ul>
 <li>Immutable</li>
 <li>Semantically transparent</li>
 
 </ul>
 
-<p>
-<a href="https://youtu.be/-6BsiVyC1kM">The Value of Values</a>
-</p>
 </section>
-<section id="slide-org2c0ff76">
-<h3 id="org2c0ff76">Value examples</h3>
+<section id="slide-org66d052c">
+<h3 id="org66d052c">Places, variables and state</h3>
+<ul>
+<li>memory</li>
+<li>file system</li>
+<li>database</li>
+<li>network service</li>
+<li>address book</li>
+
+</ul>
+
+<p>
+Variable is a ref to a place where the value stored.
+</p>
+
+<p>
+State is a union of all related places.
+</p>
+<aside class="notes">
+<p>
+Stickers on the wall
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orge8f7ed5">
+<h3 id="orge8f7ed5">Email example</h3>
+<ul>
+<li class="fragment appear">10 minute ago: andrewtropin@gmail.com</li>
+<li class="fragment appear">02 minute ago: andrey@trop.in</li>
+<li class="fragment appear">01 minute ago: andrew@trop.in</li>
+
+</ul>
+
+</section>
+<section id="slide-org54382b4">
+<h3 id="org54382b4">Value examples</h3>
 <p>
 Simple
 </p>
@@ -84,37 +115,29 @@ Aggregated
 </div>
 
 </section>
-<section id="slide-orgf0c3118">
-<h3 id="orgf0c3118">Places and vars</h3>
+</section>
+<section>
+<section id="slide-orgad25e4e">
+<h2 id="orgad25e4e">Information system</h2>
 <ul>
-<li>memory</li>
-<li>file system</li>
-<li>database</li>
-<li>network service</li>
-<li>console</li>
+<li>Interacts with places</li>
+<li>Uses values</li>
+<li>Produces values</li>
+<li>Saves to places</li>
+<li>Supports Decision making</li>
 
 </ul>
 
-<p>
-Variable is a ref to a place where the value stored
-</p>
-
 </section>
-<section id="slide-org1be0d3d">
-<h3 id="org1be0d3d">Facts example</h3>
-<ul>
-<li>andrewtropin@gmail.com</li>
-<li>andrew@trop.in</li>
-
-</ul>
 </section>
-<section id="slide-orgac7be74">
-<h3 id="orgac7be74">Imperative programming</h3>
-<div class="outline-text-3" id="text-orgac7be74">
+<section>
+<section id="slide-org739ce53">
+<h2 id="org739ce53">Imperative programming</h2>
+<div class="outline-text-2" id="text-org739ce53">
 </div>
 </section>
-<section id="slide-org5da5f52">
-<h4 id="org5da5f52">Imperative factorial</h4>
+<section id="slide-org3acacf2">
+<h3 id="org3acacf2">Imperative factorial</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = 23;
@@ -132,8 +155,8 @@ i++;
 </div>
 
 </section>
-<section id="slide-org7e5d852">
-<h4 id="org7e5d852">More structure</h4>
+<section id="slide-orgd06aedc">
+<h3 id="orgd06aedc">More structure</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = 23;
@@ -152,8 +175,8 @@ i++;
 </div>
 
 </section>
-<section id="slide-org7771d61">
-<h4 id="org7771d61">Move flow control</h4>
+<section id="slide-org5e4e8ca">
+<h3 id="org5e4e8ca">Move flow control</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = 23;
@@ -170,8 +193,8 @@ i++;
 </div>
 
 </section>
-<section id="slide-orgf908efa">
-<h4 id="orgf908efa">Procedural</h4>
+<section id="slide-org9bc690b">
+<h3 id="org9bc690b">Procedural</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">f</span>;
@@ -192,10 +215,11 @@ i++;
 </div>
 
 </section>
-<section id="slide-org904538c">
-<h3 id="org904538c">Sum up</h3>
+<section id="slide-org67ab61b">
+<h3 id="org67ab61b">Sum up</h3>
 <ul>
-<li>Statements changes the State</li>
+<li>Statements changes the state</li>
+<li>Statements depends on the state</li>
 <li>Procedure is a collection of statements</li>
 
 </ul>
@@ -207,8 +231,15 @@ Persists values somewhere.
 </aside>
 
 </section>
-<section id="slide-orgb5c2ec6">
-<h3 id="orgb5c2ec6">Expressions</h3>
+</section>
+<section>
+<section id="slide-org0341bfd">
+<h2 id="org0341bfd">Functional programming</h2>
+<div class="outline-text-2" id="text-org0341bfd">
+</div>
+</section>
+<section id="slide-org8ff5836">
+<h3 id="org8ff5836">Expressions</h3>
 <p>
 Something that can be evaluated and produce the value.
 </p>
@@ -219,8 +250,8 @@ Something that can be evaluated and produce the value.
 </div>
 
 </section>
-<section id="slide-org9f24583">
-<h3 id="org9f24583">Expressions 2</h3>
+<section id="slide-org762e717">
+<h3 id="org762e717">Expressions 2</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim>2 + 2 * 3
@@ -229,22 +260,22 @@ Something that can be evaluated and produce the value.
 
 <div class="org-src-container">
 
-<pre  class="fragment (appear)"><code trim>(+  2 (* 2 3))
+<pre  class="fragment (appear)"><code trim><span style="color: #707183;">(</span>+  2 <span style="color: #7388D6;">(</span>* 2 3<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 </code></pre>
 </div>
 
 </section>
-<section id="slide-org19d5693">
-<h3 id="org19d5693">Expressions evaluation</h3>
+<section id="slide-org76adac6">
+<h3 id="org76adac6">Expressions evaluation</h3>
 <div class="org-src-container">
 
-<pre  class="src src-scheme"><code trim>(+ 2 (* 2 3))
+<pre  class="src src-clojure"><code trim><span style="color: #707183;">(</span>+ 2 <span style="color: #7388D6;">(</span>* 2 3<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 </code></pre>
 </div>
 
 <div class="org-src-container">
 
-<pre  class="fragment (appear)"><code trim>(+ 2 6)
+<pre  class="fragment (appear)"><code trim><span style="color: #707183;">(</span>+ 2 6<span style="color: #707183;">)</span>
 </code></pre>
 </div>
 
@@ -255,34 +286,35 @@ Something that can be evaluated and produce the value.
 </div>
 
 </section>
-<section id="slide-org6b7f662">
-<h3 id="org6b7f662">Magic do expression</h3>
+<section id="slide-org2ae82e1">
+<h3 id="org2ae82e1">Factorial expressions</h3>
 <div class="org-src-container">
 
-<pre  class="src src-scheme"><code trim>(<span style="color: #0000FF;">do</span>
- (+ 2 2)
- (* 3 5))
+<pre  class="src src-clojure"><code trim><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">factorial</span> <span style="color: #7388D6;">[</span>n<span style="color: #7388D6;">]</span>
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span>= 1 n<span style="color: #909183;">)</span>
+    1
+    <span style="color: #909183;">(</span>* n <span style="color: #709870;">(</span>factorial <span style="color: #907373;">(</span>- n 1<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span>factorial 10<span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; 3628800</span>
 </code></pre>
 </div>
 
 </section>
-<section id="slide-org08a9b6d">
-<h3 id="org08a9b6d">Expressions</h3>
+<section id="slide-org6cbb50e">
+<h3 id="org6cbb50e">Magic do expression</h3>
 <div class="org-src-container">
 
-<pre  class="src src-scheme"><code trim>(+ 2 (* 2 3))
-</code></pre>
-</div>
-
-<div class="org-src-container">
-
-<pre  class="src src-scheme"><code trim>(add 2 (mult 2 3))
+<pre  class="src src-clojure"><code trim><span style="color: #707183;">(</span><span style="color: #0000FF;">do</span>
+ <span style="color: #7388D6;">(</span>+ 2 2<span style="color: #7388D6;">)</span>
+ <span style="color: #7388D6;">(</span>* 3 5<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; 15</span>
 </code></pre>
 </div>
 
 </section>
-<section id="slide-org171812f">
-<h3 id="org171812f">Functions</h3>
+<section id="slide-org1bb81ee">
+<h3 id="org1bb81ee">Functions</h3>
 
 <div class="figure">
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Function_color_example_3.svg/1024px-Function_color_example_3.svg.png" alt="1024px-Function_color_example_3.svg.png" height="200px" />
@@ -305,8 +337,43 @@ with exactly one element of the second.</li>
 </aside>
 
 </section>
-<section id="slide-org7379e6b">
-<h3 id="org7379e6b">Functions vs Procedures</h3>
+<section id="slide-org4dfde0e">
+<h3 id="org4dfde0e">Function example 1</h3>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><code trim><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">figure-&gt;color</span> <span style="color: #7388D6;">[</span>figure<span style="color: #7388D6;">]</span>
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span><span style="color: #0000FF;">or</span> <span style="color: #709870;">(</span>= <span style="color: #008000;">"triangle"</span> figure<span style="color: #709870;">)</span>
+          <span style="color: #709870;">(</span>= <span style="color: #008000;">"square"</span> figure<span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+    <span style="color: #008000;">"red"</span>
+    <span style="color: #909183;">(</span><span style="color: #0000FF;">if</span> <span style="color: #709870;">(</span>= <span style="color: #008000;">"rectangle"</span> figure<span style="color: #709870;">)</span>
+      <span style="color: #008000;">"yellow"</span>
+      <span style="color: #709870;">(</span><span style="color: #0000FF;">if</span> <span style="color: #907373;">(</span>= <span style="color: #008000;">"polygon"</span> figure<span style="color: #907373;">)</span>
+        <span style="color: #008000;">"green"</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span>figure-&gt;color <span style="color: #008000;">"rectangle"</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; "yellow"</span>
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org1e3d807">
+<h3 id="org1e3d807">Function example 2</h3>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><code trim><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">figure-&gt;color</span>
+  <span style="color: #7388D6;">{</span><span style="color: #008000;">"triangle"</span>  <span style="color: #008000;">"red"</span>
+   <span style="color: #008000;">"rectangle"</span> <span style="color: #008000;">"yellow"</span>
+   <span style="color: #008000;">"polygon"</span>   <span style="color: #008000;">"green"</span>
+   <span style="color: #008000;">"square"</span>    <span style="color: #008000;">"red"</span><span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span>figure-&gt;color <span style="color: #008000;">"polygon"</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; "green"</span>
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgcd98a21">
+<h3 id="orgcd98a21">Procedures vs Functions</h3>
 
 <div class="figure">
 <p><img src="./images/03/diag.png" alt="diag.png" height="500px" />
@@ -316,63 +383,27 @@ with exactly one element of the second.</li>
 </section>
 </section>
 <section>
-<section id="slide-orgaba81d0">
-<h2 id="orgaba81d0">There is no VS</h2>
-<div class="outline-text-2" id="text-orgaba81d0">
+<section id="slide-org2856c34">
+<h2 id="org2856c34">There is no VS</h2>
+<div class="outline-text-2" id="text-org2856c34">
 </div>
 </section>
-<section id="slide-orgfdca13d">
-<h3 id="orgfdca13d">Function + Procedures</h3>
+<section id="slide-orga62f9b3">
+<h3 id="orga62f9b3">Function + Procedures</h3>
 <p>
-Both are useful
+Both can be useful
 </p>
-</section>
-<section id="slide-orgbf28266">
-<h3 id="orgbf28266">Information system</h3>
-<ul>
-<li>Interacts with places</li>
-<li>Uses values</li>
-<li>Produces values</li>
-<li>Supports Decision making</li>
-
-</ul>
 
 </section>
 </section>
 <section>
-<section id="slide-orgf2cbfaa">
-<h2 id="orgf2cbfaa">Contacts</h2>
+<section id="slide-org5e6a762">
+<h2 id="org5e6a762">Contacts</h2>
 <ul>
 <li>andrew@trop.in</li>
 <li>tg: @andrewtropin</li>
 
 </ul>
-</section>
-</section>
-<section>
-<section id="slide-orgf59c426">
-<h2 id="orgf59c426">FAQ</h2>
-<ul>
-<li>How to deal with values?</li>
-
-</ul>
-<p>
-Persistent data structures
-</p>
-
-</section>
-</section>
-<section>
-<section id="slide-org9054f61">
-<h2 id="org9054f61">Benefits and tradeoffs</h2>
-<div class="outline-text-2" id="text-org9054f61">
-</div>
-</section>
-<section id="slide-org902ee20">
-<h3 id="org902ee20">Green vs Red paper</h3>
-</section>
-<section id="slide-orga205a47">
-<h3 id="orga205a47">Laziness and memoization</h3>
 </section>
 </section>
 </div>

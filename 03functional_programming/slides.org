@@ -12,15 +12,33 @@
 #+OPTIONS: num:nil
 #+OPTIONS: toc:nil
 
-* Function vs Procedure
-- Evaluation vs Interpretation
-- Expression vs Statement
-- Values vs Variables
+* The Value of Values
+[[https://youtu.be/-6BsiVyC1kM][talk]]
+
 ** Value
 - Immutable
 - Semantically transparent
 
-[[https://youtu.be/-6BsiVyC1kM][The Value of Values]]
+** Places, variables and state
+- memory
+- file system
+- database
+- network service
+- address book
+
+Variable is a ref to a place where the value stored.
+
+State is a union of all related places.
+#+BEGIN_NOTES
+Stickers on the wall
+#+END_NOTES
+
+** Email example
+#+ATTR_REVEAL: :frag (appear)
+- 10 minute ago: andrewtropin@gmail.com
+- 02 minute ago: andrey@trop.in
+- 01 minute ago: andrew@trop.in
+
 ** Value examples
 Simple
 #+BEGIN_SRC json
@@ -38,20 +56,15 @@ Aggregated
 {"a": ["b", 7]}
 #+END_SRC
 
-** Places and vars
-- memory
-- file system
-- database
-- network service
-- console
+* Information system
+- Interacts with places
+- Uses values
+- Produces values
+- Saves to places
+- Supports Decision making
 
-Variable is a ref to a place where the value stored
-
-** Facts example
-- andrewtropin@gmail.com
-- andrew@trop.in
-** Imperative programming
-*** Imperative factorial
+* Imperative programming
+** Imperative factorial
 #+BEGIN_SRC c
 int n = 23;
 int f = 1;
@@ -66,7 +79,7 @@ if (i <= n)
 print f;
 #+END_SRC
 
-*** More structure
+** More structure
 #+BEGIN_SRC c
 int n = 23;
 int f = 1;
@@ -82,7 +95,7 @@ if (i <= n) {
 print f;
 #+END_SRC
 
-*** Move flow control
+** Move flow control
 #+BEGIN_SRC c
 int n = 23;
 int f = 1;
@@ -96,7 +109,7 @@ for (i = 1; i <= n;) {
 print f;
 #+END_SRC
 
-*** Procedural
+** Procedural
 #+BEGIN_SRC c
 int f;
 
@@ -115,12 +128,14 @@ int main() {
 #+END_SRC
 
 ** Sum up
-- Statements changes the State
+- Statements changes the state
+- Statements depends on the state
 - Procedure is a collection of statements
 #+BEGIN_NOTES
 Persists values somewhere.
 #+END_NOTES
 
+* Functional programming
 ** Expressions
 Something that can be evaluated and produce the value.
 #+BEGIN_SRC c
@@ -133,39 +148,42 @@ Something that can be evaluated and produce the value.
 #+END_SRC
 
 #+ATTR_REVEAL: :frag (appear)
-#+BEGIN_SRC scheme
+#+BEGIN_SRC clojure
 (+  2 (* 2 3))
 #+END_SRC
 
 ** Expressions evaluation
-#+BEGIN_SRC scheme
+#+BEGIN_SRC clojure
 (+ 2 (* 2 3))
 #+END_SRC
 
 #+ATTR_REVEAL: :frag (appear)
-#+BEGIN_SRC scheme
+#+BEGIN_SRC clojure
 (+ 2 6)
 #+END_SRC
 
 #+ATTR_REVEAL: :frag (appear)
-#+BEGIN_SRC scheme
+#+BEGIN_SRC clojure
 8
 #+END_SRC
 
+** Factorial expressions
+#+BEGIN_SRC clojure
+(defn factorial [n]
+  (if (= 1 n)
+    1
+    (* n (factorial (- n 1)))))
+
+(factorial 10)
+;; => 3628800
+#+END_SRC
+
 ** Magic do expression
-#+BEGIN_SRC scheme
+#+BEGIN_SRC clojure
 (do
  (+ 2 2)
  (* 3 5))
-#+END_SRC
-
-** Expressions
-#+BEGIN_SRC scheme
-(+ 2 (* 2 3))
-#+END_SRC
-
-#+BEGIN_SRC scheme
-(add 2 (mult 2 3))
+;; => 15
 #+END_SRC
 
 ** Functions
@@ -180,26 +198,50 @@ https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Function_color_example
 - Computation that calculates the value based on input, evaluating expressions.
 #+END_NOTES
 
-** Functions vs Procedures
+** Function example 1
+#+BEGIN_SRC clojure
+(defn figure->color [figure]
+  (if (or (= "triangle" figure)
+          (= "square" figure))
+    "red"
+    (if (= "rectangle" figure)
+      "yellow"
+      (if (= "polygon" figure)
+        "green"))))
+
+(figure->color "rectangle")
+;; => "yellow"
+#+END_SRC
+
+** Function example 2
+#+BEGIN_SRC clojure
+(def figure->color
+  {"triangle"  "red"
+   "rectangle" "yellow"
+   "polygon"   "green"
+   "square"    "red"})
+
+(figure->color "polygon")
+;; => "green"
+#+END_SRC
+
+** Procedures vs Functions
 #+attr_html: :height 500px
 [[./images/03/diag.png]]
 
 * There is no VS
 ** Function + Procedures
-Both are useful
-** Information system
-- Interacts with places
-- Uses values
-- Produces values
-- Supports Decision making
+Both can be useful
 
 * Contacts
 - andrew@trop.in
 - tg: @andrewtropin
-* FAQ
+
+* noexport                                                         :noexport:
+** Benefits and tradeoffs
+*** Green vs Red paper
+*** Laziness and memoization
+
+** FAQ
 - How to deal with values?
 Persistent data structures
-
-* Benefits and tradeoffs
-** Green vs Red paper
-** Laziness and memoization
