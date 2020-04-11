@@ -229,6 +229,18 @@ https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Function_color_example
 #+attr_html: :height 500px
 [[./images/03/diag.png]]
 
+* Pros and Cons
+** Pros
+#+ATTR_REVEAL: :frag (appear)
+- safe
+- concurrent
+- actually reusable
+- easy for decoupling and testing
+- memoization and laziness
+** Cons
+#+ATTR_REVEAL: :frag (appear)
+- it's mindblowing
+- you can't do anything practical with it
 * There is no VS
 ** Function + Procedures
 Both can be useful
@@ -246,3 +258,6 @@ Both can be useful
 ** FAQ
 - How to deal with values?
 Persistent data structures
+
+#+BEGIN_SRC clojure
+#+END_SRC
