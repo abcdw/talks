@@ -232,14 +232,17 @@ https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Function_color_example
 * Pros and Cons
 ** Pros
 #+ATTR_REVEAL: :frag (appear)
+Your code is:
 - safe
 - concurrent
 - actually reusable
-- easy for decoupling and testing
-- memoization and laziness
+- easy to decouple and test
+- lazy and momizable
+- describes business logic
 ** Cons
 #+ATTR_REVEAL: :frag (appear)
 - it's mindblowing
+- maybe not so efficient
 - you can't do anything practical with it
 * There is no VS
 ** Function + Procedures
