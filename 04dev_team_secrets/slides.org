@@ -6,7 +6,7 @@
 #+EXPORT_FILE_NAME: ../docs/04dev_team_secrets
 #+REVEAL_INIT_OPTIONS: hash:true, slideNumber:true, controls:false
 #+REVEAL_EXTRA_CSS: css/custom.css
-#+REVEAL_TITLE_SLIDE: <h2 class="title">Functional programming:</h2> <h3 class="subtitle">What is it?</h3>
+#+REVEAL_TITLE_SLIDE: <h2 class="title">Dev Team Secrets</h2>
 #+REVEAL_TITLE_SLIDE: <img class="title-image" height="200px" src="https://www.gopass.pw/gopher/eyes.pngo"><p class="author">%a<p><p class="date">2020-05-19</p>
 
 #+OPTIONS: num:nil
