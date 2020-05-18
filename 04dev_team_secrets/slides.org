@@ -1,0 +1,72 @@
+#+TITLE: What is functional programming?
+#+AUTHOR: Andrew Tropin
+#+EMAIL: andrew@trop.in
+
+#+REVEAL_THEME: white
+#+EXPORT_FILE_NAME: ../docs/04dev_team_secrets
+#+REVEAL_INIT_OPTIONS: hash:true, slideNumber:true, controls:false
+#+REVEAL_EXTRA_CSS: css/custom.css
+#+REVEAL_TITLE_SLIDE: <h2 class="title">Functional programming:</h2> <h3 class="subtitle">What is it?</h3>
+#+REVEAL_TITLE_SLIDE: <img class="title-image" height="200px" src="images/03/lambda.png"><p class="author">%a<p><p class="date">2020-04-11</p>
+
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+
+* Motivation
+** For what
+- Personal passwords
+- Sharing encrypted data
+- Commiting prod.env
+** Why
+- good encryption
+- no 3rd parties
+- easy integration via cli
+* Introduction
+** pgp, gpg, etc
+- Pretty Good
+- [[https://tools.ietf.org/html/rfc4880][OpenPGP]] (pgp)
+- GnuPG (gpg)
+** gpg capabilities
+- signing
+- encryption
+** gpg example
+#+BEGIN_SRC shell
+gpg --output myfile.txt.gpg --encrypt --recipient andrew@trop.in myfile.txt
+gpg --output myfile.txt --decrypt myfile.txt.gpg
+#+END_SRC
+* Demonstration 1
+** browser/phone
+** Questions
+* Demonstration 2
+** secrets exchange
+** Questions
+* Notes
+** Init store
+In case you don't have gpg key use ~gpg --gen-key~.
+#+BEGIN_SRC shell
+gopass init
+#+END_SRC
+** Clone exitisting store
+#+BEGIN_SRC shell
+gopass clone git@gitservice.com:user/repo.git local-store-name
+gopass sync --store local-store-name
+#+END_SRC
+
+sync will pull remote update, push local updates and will add all
+public key available in remote password store to local keychain.
+** Managing recepients
+On each action with recepients all secrets that you have access to
+will be re-encrypted.
+
+#+BEGIN_SRC shell
+gopass recepients add --store local-store-name
+gopass recepients remove --store local-store-name
+#+END_SRC
+
+* Contacts
+#+OPTIONS: ^:nil
+- [[mailto:andrew@trop.in][andrew@trop.in]]
+- tg: [[https://t.me/tropin_channel][@tropin_channel]]
+- github: [[https://github.com/abcdw][@abcdw]]
+
+* noexport                                                         :noexport:
