@@ -28,8 +28,14 @@
 - [[https://tools.ietf.org/html/rfc4880][OpenPGP]] (pgp)
 - GnuPG (gpg)
 ** gpg capabilities
-- signing
-- encryption
+- sign
+- encrypt
+- authenticate
+- certify
+** gpg anatomy
+#+attr_html: :height 500px
+[[./images/04/key-anatomy1.png]]
+
 ** gpg example
 #+BEGIN_SRC shell
 gpg --output myfile.txt.gpg --encrypt --recipient andrew@trop.in myfile.txt
