@@ -13,13 +13,14 @@
 #+OPTIONS: toc:nil
 
 * Motivation
-** For what
+** Use cases
 - Personal passwords
 - Sharing encrypted data
 - Commiting prod.env
-** Why
+** Why gpg+git+gopass?
+- auditable sources
 - good encryption
-- no 3rd parties
+- no 3rd parties, no trust
 - easy integration via cli
 * Introduction
 ** pgp, gpg, etc
