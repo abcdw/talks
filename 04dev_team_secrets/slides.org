@@ -17,14 +17,16 @@
 - Personal passwords
 - Sharing encrypted data
 - Commiting prod.env
-** Why gpg+git+gopass?
-- auditable sources
-- good encryption
+** Warning
+Proceed on your own risk
+** Why gpg, git and gopass?
+- FOSS
 - no 3rd parties, no trust
+- good encryption
 - easy integration via cli
 * Introduction
 ** pgp, gpg, etc
-- Pretty Good
+- Pretty Good Privacy
 - [[https://tools.ietf.org/html/rfc4880][OpenPGP]] (pgp)
 - GnuPG (gpg)
 ** gpg capabilities
@@ -41,11 +43,29 @@
 gpg --output myfile.txt.gpg --encrypt --recipient andrew@trop.in myfile.txt
 gpg --output myfile.txt --decrypt myfile.txt.gpg
 #+END_SRC
-* Demonstration 1
+* Personal Workflow Demo
 ** browser/phone
+- [[https://github.com/gopasspw/gopass/blob/master/docs/features.md][gopass features]]
+#+BEGIN_NOTES
+- browser
+- phone
+#+END_NOTES
 ** Questions
-* Demonstration 2
+* Team Workflow demo
 ** secrets exchange
+#+BEGIN_NOTES
+#+BEGIN_SRC shell
+
+
+nix-shell -p gopass gnupg
+gpg --gen-key
+gopass init
+gopass insert
+gopass clone
+gopass config
+gopass recipients
+#+END_SRC
+#+END_NOTES
 ** Questions
 * Notes
 ** Init store
@@ -72,8 +92,12 @@ gopass recepients remove --store local-store-name
 
 * Contacts
 #+OPTIONS: ^:nil
+Andrew Tropin
 - [[mailto:andrew@trop.in][andrew@trop.in]]
 - tg: [[https://t.me/tropin_channel][@tropin_channel]]
 - github: [[https://github.com/abcdw][@abcdw]]
+Andrew Zhurov
+- [[mailto:andrewzhurov@gmail.com][andrewzhurov@gmail.com]]
+- github: [[https://github.com/andrewzhurov][@andrewzhurov]]
 
 * noexport                                                         :noexport:
