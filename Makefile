@@ -24,4 +24,4 @@ clean:
 	rm -f $(objects)
 
 watch:
-	watchexec --exts md make slides
+	cd docs && clojure -Sdeps '{:deps {nasus {:mvn/version "0.1.7"}}}' -m http.server 8001
