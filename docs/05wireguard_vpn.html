@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Wireguard VPN</title>
+<meta name="author" content="(Andrew Tropin)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/white.css" id="theme"/>
+
+<link rel="stylesheet" href="css/custom.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h2 class="title">WireGuard VPN</h2>
+<img class="title-image" height="200px" src="images/05/wireguard.png"><p class="author">Andrew Tropin<p><p class="date">2020-06-02</p>
+</section>
+
+<section>
+<section id="slide-org8397d16">
+<h2 id="org8397d16">Introduction</h2>
+<div class="outline-text-2" id="text-org8397d16">
+</div>
+</section>
+<section id="slide-orge0417ac">
+<h3 id="orge0417ac">Problem</h3>
+<ul>
+<li><a href="https://linkedin.com">https://linkedin.com</a></li>
+<li><a href="https://telegram.com">https://telegram.com</a></li>
+<li><a href="https://cljdoc.org">https://cljdoc.org</a></li>
+
+</ul>
+
+</section>
+<section id="slide-org84e58c2">
+<h3 id="org84e58c2">Simple solution</h3>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>ssh -D 8123 root@ip-addr
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org85e392a">
+<h3 id="org85e392a">What are we going to do today?</h3>
+
+<div class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/LAN_WAN_scheme.svg/2560px-LAN_WAN_scheme.svg.png" alt="2560px-LAN_WAN_scheme.svg.png" height="300px" />
+</p>
+</div>
+<ul>
+<li>Setup "VPN server" on AWS</li>
+<li>Connect 4 peers in one network</li>
+<li>Change exit point to internet</li>
+<li>Understand routing, NAT</li>
+
+</ul>
+</section>
+<section id="slide-org708cf94">
+<h3 id="org708cf94">Prerequisites</h3>
+<p>
+install nix:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>curl -L https://nixos.org/nix/install | sh
+</code></pre>
+</div>
+
+<p>
+clone repo:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">use `nix-shell -p git` if you don't have git installed</span>
+git clone https://github.com/abcdw/configs
+<span style="color: #006FE0;">cd</span> configs/nixos/wireguard
+nix-shell
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgf9c605c">
+<h3 id="orgf9c605c">Today VPN use cases</h3>
+<ul>
+<li>Combining of few peers in one network</li>
+<li>Changing exit point to internet using NAT</li>
+
+</ul>
+</section>
+<section id="slide-orgcc7911c">
+<h3 id="orgcc7911c">Why WireGuard?</h3>
+<p>
+Why not OpenVPN/IPSEC/etc? Why self-hosted?
+</p>
+<ul>
+<li>simple (auth model, implementation)</li>
+<li>fast (ping, throughput)</li>
+<li>secure (small code base, strong cryptography)</li>
+<li>good defaults</li>
+
+</ul>
+</section>
+<section id="slide-org52e1479">
+<h3 id="org52e1479">Why WireGuard?</h3>
+<ul>
+<li>stealthy and energy efficient</li>
+<li>stateless (from user perspective)</li>
+<li>designed for linux, works everywhere</li>
+<li>udp punches throught firewall</li>
+
+</ul>
+</section>
+<section id="slide-org6e743ce">
+<h3 id="org6e743ce">Deploy VPN server</h3>
+<p>
+Update REMOTE_HOST var in Makefile.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>make deploy-reboot
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd5cd2d0">
+<h2 id="orgd5cd2d0">Theory</h2>
+<div class="outline-text-2" id="text-orgd5cd2d0">
+</div>
+</section>
+<section id="slide-org13d637c">
+<h3 id="org13d637c">WireGuard quickstart</h3>
+<p>
+<a href="https://www.wireguard.com/quickstart/">https://www.wireguard.com/quickstart/</a>
+</p>
+</section>
+<section id="slide-org4ab043b">
+<h3 id="org4ab043b">WireGuard in-depth</h3>
+<p>
+<a href="https://youtu.be/88GyLoZbDNw">https://youtu.be/88GyLoZbDNw</a>
+</p>
+</section>
+<section id="slide-org1f28abd">
+<h3 id="org1f28abd">Theory: How WireGuard works?</h3>
+<p>
+Looks like basic eth0 interface.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>ip link add wg0 type wireguard
+ip address add dev wg0 10.100.0.1/24
+wg set wg0 listen-port 51820 private-key /path/to/private-key peer ABCDEF... allowed-ips 10.100.0.101/24
+ip link set up dev wg0
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgea8d942">
+<h3 id="orgea8d942">Theory: How WireGuard works?</h3>
+<p>
+Uses public key cryptography and authenticate like ssh with authorized
+keys.
+</p>
+
+
+<div class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Private_key_signing.svg/1920px-Private_key_signing.svg.png" alt="1920px-Private_key_signing.svg.png" height="400px" />
+</p>
+</div>
+</section>
+<section id="slide-orgdc76fb6">
+<h3 id="orgdc76fb6">Theory: How WireGuard works?</h3>
+
+<div class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Public_key_encryption.svg/1920px-Public_key_encryption.svg.png" alt="1920px-Public_key_encryption.svg.png" height="400px" />
+</p>
+</div>
+
+</section>
+<section id="slide-org83c60b1">
+<h3 id="org83c60b1">Theory: Am I Anonymous now?</h3>
+<p>
+VPN doesn't make you anonymous.
+</p>
+
+<p>
+That's it.
+</p>
+
+</section>
+<section id="slide-orga942186">
+<h3 id="orga942186">No server, no client</h3>
+<p>
+Everyone is a peer.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org2d24de0">
+<h2 id="org2d24de0">Practice</h2>
+<div class="outline-text-2" id="text-org2d24de0">
+</div>
+</section>
+<section id="slide-orgea6a4ed">
+<h3 id="orgea6a4ed">Add a mobile client</h3>
+
+<div class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/LAN_WAN_scheme.svg/2560px-LAN_WAN_scheme.svg.png" alt="2560px-LAN_WAN_scheme.svg.png" height="300px" />
+</p>
+</div>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>make clients/1.qr
+</code></pre>
+</div>
+
+<p>
+Romaing is like mosh, endpoint changes automatically.
+</p>
+
+</section>
+<section id="slide-org0774bdd">
+<h3 id="org0774bdd">routing</h3>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>make ssh
+</code></pre>
+</div>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>ip route show table all scope link
+10.100.0.0/24 dev wg0 proto kernel src 10.100.0.1
+10.100.0.101 dev wg0
+10.100.0.102 dev wg0
+10.100.0.103 dev wg0
+172.31.16.0/20 dev eth0 proto dhcp src 172.31.17.17 metric 202 mtu 9001
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org36ad620">
+<h3 id="org36ad620">NAT</h3>
+
+<div class="figure">
+<p><img src="http://www.justasysadmin.net/files/3812/9149/5750/ClientServeurNat.png" alt="ClientServeurNat.png" height="500px" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgbf1e88f">
+<h3 id="orgbf1e88f">More peers</h3>
+<p>
+Uncomment peers in <code>default.nix</code>.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>make deploy
+make clients/2.qr
+make clients/3.conf
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org54499ac">
+<h3 id="org54499ac">Ubuntu peer</h3>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim><span style="color: #BA36A5;">ubu</span>=IPADDRESS
+scp clients/3.conf root@$<span style="color: #BA36A5;">ubu</span>:~/
+ssh root@$<span style="color: #BA36A5;">ubu</span>
+passwd
+apt update &amp;&amp; apt install wireguard resolvconf python3
+cp 3.conf /etc/wireguard/wg0.conf
+systemctl enable wg-quick@wg0
+python3 -m http.server 8000
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org09fa2f7">
+<h3 id="org09fa2f7">Future steps</h3>
+<ul>
+<li>Conditional routing</li>
+<li>Network namespaces</li>
+<li>Admin interface for wg server</li>
+<li>DNS over VPN</li>
+
+</ul>
+
+</section>
+<section id="slide-orga419ebe">
+<h3 id="orga419ebe">Questions</h3>
+
+</section>
+</section>
+<section>
+<section id="slide-org04842f1">
+<h2 id="org04842f1">Contacts</h2>
+<p>
+Andrew Tropin
+</p>
+<ul>
+<li><a href="mailto:andrew@trop.in">andrew@trop.in</a></li>
+<li>tg: <a href="https://t.me/tropin_channel">@tropin_channel</a></li>
+<li>github: <a href="https://github.com/abcdw">@abcdw</a></li>
+
+</ul>
+<p>
+Vitaly Rybnikov
+</p>
+<ul>
+<li>github: <a href="https://github.com/frodox">@frodox</a></li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+hash:true, slideNumber:true, controls:false,
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

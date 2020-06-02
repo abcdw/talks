@@ -1,0 +1,170 @@
+#+TITLE: Wireguard VPN
+#+AUTHOR: Andrew Tropin
+#+EMAIL: andrew@trop.in
+
+#+REVEAL_THEME: white
+#+EXPORT_FILE_NAME: ../docs/05wireguard_vpn
+#+REVEAL_INIT_OPTIONS: hash:true, slideNumber:true, controls:false
+#+REVEAL_EXTRA_CSS: css/custom.css
+#+REVEAL_TITLE_SLIDE: <h2 class="title">WireGuard VPN</h2>
+#+REVEAL_TITLE_SLIDE: <img class="title-image" height="200px" src="images/05/wireguard.png"><p class="author">%a<p><p class="date">2020-06-02</p>
+
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+
+* Introduction
+** Problem
+- https://linkedin.com
+- https://telegram.com
+- https://cljdoc.org
+
+** Simple solution
+#+BEGIN_SRC shell
+ssh -D 8123 root@ip-addr
+#+END_SRC
+
+** Create AWS/DO instances                                        :noexport:
+- AWS with nixos for "server"
+- DO with ubuntu for "client"
+
+** What are we going to do today?
+#+attr_html: :height 300px
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/LAN_WAN_scheme.svg/2560px-LAN_WAN_scheme.svg.png]]
+- Setup "VPN server" on AWS
+- Connect 4 peers in one network
+- Change exit point to internet
+- Understand routing, NAT
+** Prerequisites
+install nix:
+#+BEGIN_SRC shell
+curl -L https://nixos.org/nix/install | sh
+#+END_SRC
+
+clone repo:
+#+BEGIN_SRC shell
+# use `nix-shell -p git` if you don't have git installed
+git clone https://github.com/abcdw/configs
+cd configs/nixos/wireguard
+nix-shell
+#+END_SRC
+
+** Today VPN use cases
+- Combining of few peers in one network
+- Changing exit point to internet using NAT
+** Why WireGuard?
+Why not OpenVPN/IPSEC/etc? Why self-hosted?
+- simple (auth model, implementation)
+- fast (ping, throughput)
+- secure (small code base, strong cryptography)
+- good defaults
+** Why WireGuard?
+- stealthy and energy efficient
+- stateless (from user perspective)
+- designed for linux, works everywhere
+- udp punches throught firewall
+** Deploy VPN server
+Update REMOTE_HOST var in Makefile.
+
+#+BEGIN_SRC shell
+make deploy-reboot
+#+END_SRC
+
+* Theory
+** WireGuard quickstart
+https://www.wireguard.com/quickstart/
+** WireGuard in-depth
+https://youtu.be/88GyLoZbDNw
+** Theory: How WireGuard works?
+Looks like basic eth0 interface.
+#+BEGIN_SRC shell
+ip link add wg0 type wireguard
+ip address add dev wg0 10.100.0.1/24
+wg set wg0 listen-port 51820 private-key /path/to/private-key peer ABCDEF... allowed-ips 10.100.0.101/24
+ip link set up dev wg0
+#+END_SRC
+
+** Theory: How WireGuard works?
+Uses public key cryptography and authenticate like ssh with authorized
+keys.
+
+#+attr_html: :height 400px
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Private_key_signing.svg/1920px-Private_key_signing.svg.png]]
+** Theory: How WireGuard works?
+
+#+attr_html: :height 400px
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Public_key_encryption.svg/1920px-Public_key_encryption.svg.png]]
+
+** Theory: Am I Anonymous now?
+VPN doesn't make you anonymous.
+
+That's it.
+
+** No server, no client
+Everyone is a peer.
+
+* Practice
+** Add a mobile client
+#+attr_html: :height 300px
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/LAN_WAN_scheme.svg/2560px-LAN_WAN_scheme.svg.png]]
+#+BEGIN_SRC shell
+make clients/1.qr
+#+END_SRC
+
+Romaing is like mosh, endpoint changes automatically.
+
+** routing
+#+BEGIN_SRC shell
+make ssh
+#+END_SRC
+#+BEGIN_SRC shell
+ip route show table all scope link
+10.100.0.0/24 dev wg0 proto kernel src 10.100.0.1
+10.100.0.101 dev wg0
+10.100.0.102 dev wg0
+10.100.0.103 dev wg0
+172.31.16.0/20 dev eth0 proto dhcp src 172.31.17.17 metric 202 mtu 9001
+#+END_SRC
+
+** NAT
+#+attr_html: :height 500px
+[[http://www.justasysadmin.net/files/3812/9149/5750/ClientServeurNat.png]]
+
+** More peers
+Uncomment peers in ~default.nix~.
+#+BEGIN_SRC shell
+make deploy
+make clients/2.qr
+make clients/3.conf
+#+END_SRC
+
+** Ubuntu peer
+
+#+BEGIN_SRC shell
+ubu=IPADDRESS
+scp clients/3.conf root@$ubu:~/
+ssh root@$ubu
+passwd
+apt update && apt install wireguard resolvconf python3
+cp 3.conf /etc/wireguard/wg0.conf
+systemctl enable wg-quick@wg0
+python3 -m http.server 8000
+#+END_SRC
+
+** Future steps
+- Conditional routing
+- Network namespaces
+- Admin interface for wg server
+- DNS over VPN
+
+** Questions
+
+* Contacts
+#+OPTIONS: ^:nil
+Andrew Tropin
+- [[mailto:andrew@trop.in][andrew@trop.in]]
+- tg: [[https://t.me/tropin_channel][@tropin_channel]]
+- github: [[https://github.com/abcdw][@abcdw]]
+Vitaly Rybnikov
+- github: [[https://github.com/frodox][@frodox]]
+
+* noexport                                                         :noexport:
