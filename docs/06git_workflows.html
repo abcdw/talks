@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Perfect git workflow</title>
+<meta name="author" content="(Andrew Tropin)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/white.css" id="theme"/>
+
+<link rel="stylesheet" href="css/custom.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h2 class="title">Git workflows</h2>
+<img class="title-image" height="200px" src="images/06/gitlogo.svg"><p class="author">Andrew Tropin<p><p class="date">2020-06-16</p>
+</section>
+
+<section>
+<section id="slide-org241fa45">
+<h2 id="org241fa45">Introduction</h2>
+<div class="outline-text-2" id="text-org241fa45">
+</div>
+</section>
+<section id="slide-orge88f57d">
+<h3 id="orge88f57d">Disclaimer</h3>
+<p>
+There is no perfect git workflow, but you can create a resonable one
+for your project.
+</p>
+</section>
+<section id="slide-org62be369">
+<h3 id="org62be369">What are we going to do today?</h3>
+<ul>
+<li>Overveiew of existing flows</li>
+<li>Learn git tooling</li>
+<li>Create our own git workflow</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgcb23897">
+<h2 id="orgcb23897">Hypotetical projects</h2>
+<p>
+Web app with team:
+</p>
+<ul>
+<li>QA</li>
+<li>few devs</li>
+<li>PM</li>
+
+</ul>
+</section>
+<section id="slide-org04eb558">
+<h3 id="org04eb558">Workflow Goal</h3>
+<ul>
+<li>Clear interaction model for team</li>
+<li>Homogeneous commit messages</li>
+<li>Commits grouped by feature</li>
+<li>Clean commit history with merge-commit for each feature</li>
+<li>Simple branching model</li>
+
+</ul>
+</section>
+<section id="slide-org0f604f7">
+<h3 id="org0f604f7">Quality requirements</h3>
+<ul>
+<li>Everything in master is deployable</li>
+<li>Code must be reviewed</li>
+<li>Feature must be auto tested</li>
+<li>Feature must be tested by QA</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgfb0864e">
+<h2 id="orgfb0864e">Git workflows</h2>
+<div class="outline-text-2" id="text-orgfb0864e">
+</div>
+</section>
+<section id="slide-org7f825a5">
+<h3 id="org7f825a5">rebase vs merge</h3>
+<p>
+<a href="https://www.atlassian.com/blog/git/git-team-workflows-merge-or-rebase">https://www.atlassian.com/blog/git/git-team-workflows-merge-or-rebase</a>
+</p>
+</section>
+<section id="slide-org8e7ea77">
+<h3 id="org8e7ea77">Simpliest git workflow</h3>
+<ul>
+<li>Don't do anything dangerous</li>
+<li>Write nonsense commits</li>
+<li>Create branches whenever you want</li>
+<li>Merge everything into everything</li>
+<li>Ask someone smart to figure out what the heck is happening here</li>
+
+</ul>
+</section>
+<section id="slide-org7bcbd1a">
+<h3 id="org7bcbd1a">git flow</h3>
+
+<div class="figure">
+<p><img src="https://nvie.com/img/git-model@2x.png" alt="git-model@2x.png" height="450px" />
+</p>
+</div>
+<p style="font-size:14pt">
+<a href="https://nvie.com/posts/a-successful-git-branching-model/" style="font-size:14pt">https://nvie.com/posts/a-successful-git-branching-model/</a>
+</p>
+</section>
+<section id="slide-org5a3b886">
+<h3 id="org5a3b886">git flow</h3>
+<p>
+<a href="https://nvie.com/posts/a-successful-git-branching-model/">https://nvie.com/posts/a-successful-git-branching-model/</a>
+Suitable for explicit versioning.
+</p>
+
+<p>
+Pros:
+</p>
+<ul>
+<li>Versatile</li>
+<li>Well-defined</li>
+
+</ul>
+<p>
+Cons:
+</p>
+<ul>
+<li>Overkill for many projects</li>
+<li>Complex</li>
+
+</ul>
+</section>
+<section id="slide-orge62a88b">
+<h3 id="orge62a88b">GitHub flow</h3>
+<p>
+<a href="https://guides.github.com/introduction/flow/">https://guides.github.com/introduction/flow/</a>
+</p>
+
+<p>
+Pros:
+</p>
+<ul>
+<li>Easy for novice</li>
+
+</ul>
+<p>
+Cons:
+</p>
+<ul>
+<li>Doesn't cover many use cases</li>
+<li>History can be messy</li>
+
+</ul>
+</section>
+<section id="slide-org20c39be">
+<h3 id="org20c39be">Simple Git workflow</h3>
+
+<div class="figure">
+<p><img src="https://3kllhk1ibq34qk6sp3bhtox1-wpengine.netdna-ssl.com/wp-content/uploads/rebase-on-feature.gif" alt="rebase-on-feature.gif" height="450px" />
+</p>
+</div>
+<p style="font-size:14pt">
+<a href="https://www.atlassian.com/blog/git/simple-git-workflow-is-simple" style="font-size:14pt">https://www.atlassian.com/blog/git/simple-git-workflow-is-simple</a>
+</p>
+</section>
+<section id="slide-org9d54ec6">
+<h3 id="org9d54ec6">Simple Git workflow</h3>
+<p>
+<a href="https://www.atlassian.com/blog/git/simple-git-workflow-is-simple">https://www.atlassian.com/blog/git/simple-git-workflow-is-simple</a>
+</p>
+
+<p>
+Pros:
+</p>
+<ul>
+<li>Suitable for small teams</li>
+<li>Describe enough details</li>
+<li>History is pretty good</li>
+
+</ul>
+<p>
+Cons:
+</p>
+<ul>
+<li>Require deeper git knowledge</li>
+
+</ul>
+</section>
+<section id="slide-org93bbf45">
+<h3 id="org93bbf45">GitLab flow</h3>
+<p>
+<a href="https://docs.gitlab.com/ee/topics/gitlab_flow.html">https://docs.gitlab.com/ee/topics/gitlab_flow.html</a>
+</p>
+
+<p>
+Pros:
+</p>
+<ul>
+<li>Much more details</li>
+<li>Even on auxiliary topics</li>
+
+</ul>
+<p>
+Cons:
+</p>
+<ul>
+<li>Too flexible, more like a list of tips rather than a workflow</li>
+
+</ul>
+</section>
+<section id="slide-org4ab05be">
+<h3 id="org4ab05be">Workflow should grow with the team</h3>
+</section>
+</section>
+<section>
+<section id="slide-orgbe70300">
+<h2 id="orgbe70300">Sample repo</h2>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><code trim>curl -L https://nixos.org/nix/install | sh
+nix-shell -p git
+git clone https://github.com/abcdw/git-workflow-example.git
+<span style="color: #006FE0;">cd</span> git-workflow-example
+nix-shell
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orga5b8eec">
+<h2 id="orga5b8eec">Demo</h2>
+<div class="outline-text-2" id="text-orga5b8eec">
+</div>
+</section>
+<section id="slide-orgaedb39c">
+<h3 id="orgaedb39c">Tools</h3>
+<ul>
+<li>git client</li>
+<li>status/diff</li>
+<li>merge/rebase</li>
+<li>stash</li>
+<li>blame/time-machine</li>
+
+</ul>
+</section>
+<section id="slide-org922323b">
+<h3 id="org922323b">commit messages</h3>
+<p>
+<a href="https://chris.beams.io/posts/git-commit/">https://chris.beams.io/posts/git-commit/</a>
+</p>
+</section>
+<section id="slide-org3b2f4fc">
+<h3 id="org3b2f4fc">History rewrite</h3>
+<ul>
+<li><code>commit --amend</code></li>
+<li><code>commit -p</code></li>
+<li><code>rebase -i</code></li>
+
+</ul>
+<p>
+<a href="https://git-rebase.io/">https://git-rebase.io/</a>
+</p>
+
+</section>
+<section id="slide-org1d0f4bf">
+<h3 id="org1d0f4bf">merge</h3>
+<p height="400px">
+<img src="https://nvie.com/img/merge-without-ff@2x.png" alt="merge-without-ff@2x.png" height="400px" />
+no fast-forward is preferable
+</p>
+</section>
+<section id="slide-org6fc1b22">
+<h3 id="org6fc1b22">magit-blame, git time-machine</h3>
+</section>
+<section id="slide-orgf087a3a">
+<h3 id="orgf087a3a">Deploy</h3>
+</section>
+</section>
+<section>
+<section id="slide-org3daffb9">
+<h2 id="org3daffb9">Useful links</h2>
+<ul>
+<li><a href="https://ohshitgit.com/">https://ohshitgit.com/</a></li>
+<li><a href="https://chris.beams.io/posts/git-commit/">https://chris.beams.io/posts/git-commit/</a></li>
+<li><a href="https://www.atlassian.com/blog/git/git-team-workflows-merge-or-rebase">https://www.atlassian.com/blog/git/git-team-workflows-merge-or-rebase</a></li>
+<li><a href="https://git-rebase.io/">https://git-rebase.io/</a></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org8d1f930">
+<h2 id="org8d1f930">Questions</h2>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd75c540">
+<h2 id="orgd75c540">Contacts</h2>
+<p>
+Andrew Tropin
+</p>
+<ul>
+<li><a href="mailto:andrew@trop.in">andrew@trop.in</a></li>
+<li>tg: <a href="https://t.me/tropin_channel">@tropin_channel</a></li>
+<li>github: <a href="https://github.com/abcdw">@abcdw</a></li>
+
+</ul>
+<p>
+Leonid Melnik
+</p>
+<ul>
+<li>github: <a href="https://github.com/Vixlun">@Vixlun</a></li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+hash:true, slideNumber:true, controls:false,
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

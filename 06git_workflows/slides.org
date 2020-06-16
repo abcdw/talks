@@ -1,0 +1,139 @@
+#+TITLE: Perfect git workflow
+#+AUTHOR: Andrew Tropin
+#+EMAIL: andrew@trop.in
+
+#+REVEAL_THEME: white
+#+EXPORT_FILE_NAME: ../docs/06git_workflows
+#+REVEAL_INIT_OPTIONS: hash:true, slideNumber:true, controls:false
+#+REVEAL_EXTRA_CSS: css/custom.css
+#+REVEAL_TITLE_SLIDE: <h2 class="title">Git workflows</h2>
+#+REVEAL_TITLE_SLIDE: <img class="title-image" height="200px" src="images/06/gitlogo.svg"><p class="author">%a<p><p class="date">2020-06-16</p>
+
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+
+* Introduction
+** Disclaimer
+There is no perfect git workflow, but you can create a resonable one
+for your project.
+** What are we going to do today?
+- Overveiew of existing flows
+- Learn git tooling
+- Create our own git workflow
+* Hypotetical projects
+Web app with team:
+- QA
+- few devs
+- PM
+** Workflow Goal
+- Clear interaction model for team
+- Homogeneous commit messages
+- Commits grouped by feature
+- Clean commit history with merge-commit for each feature
+- Simple branching model
+** Quality requirements
+- Everything in master is deployable
+- Code must be reviewed
+- Feature must be auto tested
+- Feature must be tested by QA
+* Git workflows
+** rebase vs merge
+https://www.atlassian.com/blog/git/git-team-workflows-merge-or-rebase
+** Simpliest git workflow
+- Don't do anything dangerous
+- Write nonsense commits
+- Create branches whenever you want
+- Merge everything into everything
+- Ask someone smart to figure out what the heck is happening here
+** git flow
+#+attr_html: :height 450px
+https://nvie.com/img/git-model@2x.png
+#+attr_html: :style font-size:14pt
+https://nvie.com/posts/a-successful-git-branching-model/
+** git flow
+https://nvie.com/posts/a-successful-git-branching-model/
+Suitable for explicit versioning.
+
+Pros:
+- Versatile
+- Well-defined
+Cons:
+- Overkill for many projects
+- Complex
+** GitHub flow
+https://guides.github.com/introduction/flow/
+
+Pros:
+- Easy for novice
+Cons:
+- Doesn't cover many use cases
+- History can be messy
+** Simple Git workflow
+#+attr_html: :height 450px
+https://3kllhk1ibq34qk6sp3bhtox1-wpengine.netdna-ssl.com/wp-content/uploads/rebase-on-feature.gif
+#+attr_html: :style font-size:14pt
+https://www.atlassian.com/blog/git/simple-git-workflow-is-simple
+** Simple Git workflow
+https://www.atlassian.com/blog/git/simple-git-workflow-is-simple
+
+Pros:
+- Suitable for small teams
+- Describe enough details
+- History is pretty good
+Cons:
+- Require deeper git knowledge
+** GitLab flow
+https://docs.gitlab.com/ee/topics/gitlab_flow.html
+
+Pros:
+- Much more details
+- Even on auxiliary topics
+Cons:
+- Too flexible, more like a list of tips rather than a workflow
+** Workflow should grow with the team
+* Sample repo
+#+BEGIN_SRC shell
+curl -L https://nixos.org/nix/install | sh
+nix-shell -p git
+git clone https://github.com/abcdw/git-workflow-example.git
+cd git-workflow-example
+nix-shell
+#+END_SRC
+* Demo
+** Tools
+- git client
+- status/diff
+- merge/rebase
+- stash
+- blame/time-machine
+** commit messages
+https://chris.beams.io/posts/git-commit/
+** History rewrite
+- ~commit --amend~
+- ~commit -p~
+- ~rebase -i~
+https://git-rebase.io/
+
+** merge
+#+attr_html: :height 400px
+https://nvie.com/img/merge-without-ff@2x.png
+no fast-forward is preferable
+** magit-blame, git time-machine
+** Deploy
+* Useful links
+- https://ohshitgit.com/
+- https://chris.beams.io/posts/git-commit/
+- https://www.atlassian.com/blog/git/git-team-workflows-merge-or-rebase
+- https://git-rebase.io/
+* Questions
+
+* Contacts
+#+OPTIONS: ^:nil
+Andrew Tropin
+- [[mailto:andrew@trop.in][andrew@trop.in]]
+- tg: [[https://t.me/tropin_channel][@tropin_channel]]
+- github: [[https://github.com/abcdw][@abcdw]]
+Leonid Melnik
+- github: [[https://github.com/Vixlun][@Vixlun]]
+
+* noexport                                                         :noexport:
