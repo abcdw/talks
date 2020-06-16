@@ -20,7 +20,7 @@ for your project.
 - Overveiew of existing flows
 - Learn git tooling
 - Create our own git workflow
-* Hypotetical projects
+* Hypothetical projects
 Web app with team:
 - QA
 - few devs
@@ -51,15 +51,17 @@ https://nvie.com/img/git-model@2x.png
 #+attr_html: :style font-size:14pt
 https://nvie.com/posts/a-successful-git-branching-model/
 ** git flow
+#+attr_html: :style font-size:20pt
 https://nvie.com/posts/a-successful-git-branching-model/
+
 Suitable for explicit versioning.
 
 Pros:
 - Versatile
 - Well-defined
 Cons:
-- Overkill for many projects
 - Complex
+- Not suitable for many projects
 ** GitHub flow
 https://guides.github.com/introduction/flow/
 

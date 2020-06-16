@@ -32,20 +32,20 @@
 </section>
 
 <section>
-<section id="slide-org241fa45">
-<h2 id="org241fa45">Introduction</h2>
-<div class="outline-text-2" id="text-org241fa45">
+<section id="slide-orgbefa442">
+<h2 id="orgbefa442">Introduction</h2>
+<div class="outline-text-2" id="text-orgbefa442">
 </div>
 </section>
-<section id="slide-orge88f57d">
-<h3 id="orge88f57d">Disclaimer</h3>
+<section id="slide-orga7db03f">
+<h3 id="orga7db03f">Disclaimer</h3>
 <p>
 There is no perfect git workflow, but you can create a resonable one
 for your project.
 </p>
 </section>
-<section id="slide-org62be369">
-<h3 id="org62be369">What are we going to do today?</h3>
+<section id="slide-orgfe578f1">
+<h3 id="orgfe578f1">What are we going to do today?</h3>
 <ul>
 <li>Overveiew of existing flows</li>
 <li>Learn git tooling</li>
@@ -55,8 +55,8 @@ for your project.
 </section>
 </section>
 <section>
-<section id="slide-orgcb23897">
-<h2 id="orgcb23897">Hypotetical projects</h2>
+<section id="slide-orgf96ed50">
+<h2 id="orgf96ed50">Hypothetical projects</h2>
 <p>
 Web app with team:
 </p>
@@ -67,8 +67,8 @@ Web app with team:
 
 </ul>
 </section>
-<section id="slide-org04eb558">
-<h3 id="org04eb558">Workflow Goal</h3>
+<section id="slide-org7a116e4">
+<h3 id="org7a116e4">Workflow Goal</h3>
 <ul>
 <li>Clear interaction model for team</li>
 <li>Homogeneous commit messages</li>
@@ -78,8 +78,8 @@ Web app with team:
 
 </ul>
 </section>
-<section id="slide-org0f604f7">
-<h3 id="org0f604f7">Quality requirements</h3>
+<section id="slide-orgff995e9">
+<h3 id="orgff995e9">Quality requirements</h3>
 <ul>
 <li>Everything in master is deployable</li>
 <li>Code must be reviewed</li>
@@ -90,19 +90,19 @@ Web app with team:
 </section>
 </section>
 <section>
-<section id="slide-orgfb0864e">
-<h2 id="orgfb0864e">Git workflows</h2>
-<div class="outline-text-2" id="text-orgfb0864e">
+<section id="slide-org0af021d">
+<h2 id="org0af021d">Git workflows</h2>
+<div class="outline-text-2" id="text-org0af021d">
 </div>
 </section>
-<section id="slide-org7f825a5">
-<h3 id="org7f825a5">rebase vs merge</h3>
+<section id="slide-org128298b">
+<h3 id="org128298b">rebase vs merge</h3>
 <p>
 <a href="https://www.atlassian.com/blog/git/git-team-workflows-merge-or-rebase">https://www.atlassian.com/blog/git/git-team-workflows-merge-or-rebase</a>
 </p>
 </section>
-<section id="slide-org8e7ea77">
-<h3 id="org8e7ea77">Simpliest git workflow</h3>
+<section id="slide-orgf156794">
+<h3 id="orgf156794">Simpliest git workflow</h3>
 <ul>
 <li>Don't do anything dangerous</li>
 <li>Write nonsense commits</li>
@@ -112,8 +112,8 @@ Web app with team:
 
 </ul>
 </section>
-<section id="slide-org7bcbd1a">
-<h3 id="org7bcbd1a">git flow</h3>
+<section id="slide-orgb32b12b">
+<h3 id="orgb32b12b">git flow</h3>
 
 <div class="figure">
 <p><img src="https://nvie.com/img/git-model@2x.png" alt="git-model@2x.png" height="450px" />
@@ -123,10 +123,13 @@ Web app with team:
 <a href="https://nvie.com/posts/a-successful-git-branching-model/" style="font-size:14pt">https://nvie.com/posts/a-successful-git-branching-model/</a>
 </p>
 </section>
-<section id="slide-org5a3b886">
-<h3 id="org5a3b886">git flow</h3>
+<section id="slide-org82fc643">
+<h3 id="org82fc643">git flow</h3>
+<p style="font-size:20pt">
+<a href="https://nvie.com/posts/a-successful-git-branching-model/" style="font-size:20pt">https://nvie.com/posts/a-successful-git-branching-model/</a>
+</p>
+
 <p>
-<a href="https://nvie.com/posts/a-successful-git-branching-model/">https://nvie.com/posts/a-successful-git-branching-model/</a>
 Suitable for explicit versioning.
 </p>
 
@@ -142,13 +145,13 @@ Pros:
 Cons:
 </p>
 <ul>
-<li>Overkill for many projects</li>
 <li>Complex</li>
+<li>Not suitable for many projects</li>
 
 </ul>
 </section>
-<section id="slide-orge62a88b">
-<h3 id="orge62a88b">GitHub flow</h3>
+<section id="slide-orge0b215a">
+<h3 id="orge0b215a">GitHub flow</h3>
 <p>
 <a href="https://guides.github.com/introduction/flow/">https://guides.github.com/introduction/flow/</a>
 </p>
@@ -169,8 +172,8 @@ Cons:
 
 </ul>
 </section>
-<section id="slide-org20c39be">
-<h3 id="org20c39be">Simple Git workflow</h3>
+<section id="slide-orgdc47813">
+<h3 id="orgdc47813">Simple Git workflow</h3>
 
 <div class="figure">
 <p><img src="https://3kllhk1ibq34qk6sp3bhtox1-wpengine.netdna-ssl.com/wp-content/uploads/rebase-on-feature.gif" alt="rebase-on-feature.gif" height="450px" />
@@ -180,8 +183,8 @@ Cons:
 <a href="https://www.atlassian.com/blog/git/simple-git-workflow-is-simple" style="font-size:14pt">https://www.atlassian.com/blog/git/simple-git-workflow-is-simple</a>
 </p>
 </section>
-<section id="slide-org9d54ec6">
-<h3 id="org9d54ec6">Simple Git workflow</h3>
+<section id="slide-org5ea546e">
+<h3 id="org5ea546e">Simple Git workflow</h3>
 <p>
 <a href="https://www.atlassian.com/blog/git/simple-git-workflow-is-simple">https://www.atlassian.com/blog/git/simple-git-workflow-is-simple</a>
 </p>
@@ -203,8 +206,8 @@ Cons:
 
 </ul>
 </section>
-<section id="slide-org93bbf45">
-<h3 id="org93bbf45">GitLab flow</h3>
+<section id="slide-orga380db5">
+<h3 id="orga380db5">GitLab flow</h3>
 <p>
 <a href="https://docs.gitlab.com/ee/topics/gitlab_flow.html">https://docs.gitlab.com/ee/topics/gitlab_flow.html</a>
 </p>
@@ -225,13 +228,13 @@ Cons:
 
 </ul>
 </section>
-<section id="slide-org4ab05be">
-<h3 id="org4ab05be">Workflow should grow with the team</h3>
+<section id="slide-org1a0b0af">
+<h3 id="org1a0b0af">Workflow should grow with the team</h3>
 </section>
 </section>
 <section>
-<section id="slide-orgbe70300">
-<h2 id="orgbe70300">Sample repo</h2>
+<section id="slide-org7f251ec">
+<h2 id="org7f251ec">Sample repo</h2>
 <div class="org-src-container">
 
 <pre  class="src src-shell"><code trim>curl -L https://nixos.org/nix/install | sh
@@ -244,13 +247,13 @@ nix-shell
 </section>
 </section>
 <section>
-<section id="slide-orga5b8eec">
-<h2 id="orga5b8eec">Demo</h2>
-<div class="outline-text-2" id="text-orga5b8eec">
+<section id="slide-org270d1b3">
+<h2 id="org270d1b3">Demo</h2>
+<div class="outline-text-2" id="text-org270d1b3">
 </div>
 </section>
-<section id="slide-orgaedb39c">
-<h3 id="orgaedb39c">Tools</h3>
+<section id="slide-orgf61efb2">
+<h3 id="orgf61efb2">Tools</h3>
 <ul>
 <li>git client</li>
 <li>status/diff</li>
@@ -260,14 +263,14 @@ nix-shell
 
 </ul>
 </section>
-<section id="slide-org922323b">
-<h3 id="org922323b">commit messages</h3>
+<section id="slide-org3c0bfff">
+<h3 id="org3c0bfff">commit messages</h3>
 <p>
 <a href="https://chris.beams.io/posts/git-commit/">https://chris.beams.io/posts/git-commit/</a>
 </p>
 </section>
-<section id="slide-org3b2f4fc">
-<h3 id="org3b2f4fc">History rewrite</h3>
+<section id="slide-orgbcaba18">
+<h3 id="orgbcaba18">History rewrite</h3>
 <ul>
 <li><code>commit --amend</code></li>
 <li><code>commit -p</code></li>
@@ -279,23 +282,23 @@ nix-shell
 </p>
 
 </section>
-<section id="slide-org1d0f4bf">
-<h3 id="org1d0f4bf">merge</h3>
+<section id="slide-org178b228">
+<h3 id="org178b228">merge</h3>
 <p height="400px">
 <img src="https://nvie.com/img/merge-without-ff@2x.png" alt="merge-without-ff@2x.png" height="400px" />
 no fast-forward is preferable
 </p>
 </section>
-<section id="slide-org6fc1b22">
-<h3 id="org6fc1b22">magit-blame, git time-machine</h3>
+<section id="slide-orgfa77a72">
+<h3 id="orgfa77a72">magit-blame, git time-machine</h3>
 </section>
-<section id="slide-orgf087a3a">
-<h3 id="orgf087a3a">Deploy</h3>
+<section id="slide-org6c474a7">
+<h3 id="org6c474a7">Deploy</h3>
 </section>
 </section>
 <section>
-<section id="slide-org3daffb9">
-<h2 id="org3daffb9">Useful links</h2>
+<section id="slide-org6914a62">
+<h2 id="org6914a62">Useful links</h2>
 <ul>
 <li><a href="https://ohshitgit.com/">https://ohshitgit.com/</a></li>
 <li><a href="https://chris.beams.io/posts/git-commit/">https://chris.beams.io/posts/git-commit/</a></li>
@@ -306,14 +309,14 @@ no fast-forward is preferable
 </section>
 </section>
 <section>
-<section id="slide-org8d1f930">
-<h2 id="org8d1f930">Questions</h2>
+<section id="slide-org642643f">
+<h2 id="org642643f">Questions</h2>
 
 </section>
 </section>
 <section>
-<section id="slide-orgd75c540">
-<h2 id="orgd75c540">Contacts</h2>
+<section id="slide-org6573337">
+<h2 id="org6573337">Contacts</h2>
 <p>
 Andrew Tropin
 </p>
