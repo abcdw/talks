@@ -54,3 +54,10 @@ img {
     border: none !important;
     box-shadow: none !important;
 }
+
+.reveal ol,
+.reveal dl,
+.reveal ul {
+  display: block;
+  text-align: left;
+  margin: 0 0 0 1em; }
