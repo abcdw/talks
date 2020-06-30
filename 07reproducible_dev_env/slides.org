@@ -1,0 +1,123 @@
+#+TITLE: Reproducible Dev Env
+#+AUTHOR: Andrew Tropin
+#+EMAIL: andrew@trop.in
+
+#+REVEAL_THEME: white
+#+REVEAL_ROOT: ./reveal.js
+#+EXPORT_FILE_NAME: ../docs/07reproducible_dev_env
+#+OPTIONS: reveal_history:t
+#+OPTIONS: reveal_control:nil
+#+REVEAL_EXTRA_CSS: css/custom.css
+#+REVEAL_TITLE_SLIDE: <h2 class="title">Reproducible Dev Env</h2>
+#+REVEAL_TITLE_SLIDE: <img class="title-image" height="200px" src="images/07/logo.png"><p class="author">%a<p><p class="date">2020-06-30</p>
+
+# #+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+
+* Introduction
+** Use case
+Multilang web app with some ML
+- Move env from one host to another
+- Syncronize with other developers
+- Fast setup for new developer
+- Similiar setup prod
+** Dev Env Parts
+- OS and system-wide configs
+- Configuration of user space apps (chrome, ide)
+- Package managers (npm, apt, nix)
+- Services (docker, systemd)
+- Project deps (libs, packages)
+- Project related tools (npm, kubectl, emacs plugin)
+- Project configs, envs
+** Env characteristics
+- Declarative
+- Isolated (from OS)
+- Reliable
+** Easy solutions
+- Shared dev machine
+- Frozen dev image
+- Virtual env
+* OS
+** OS Parts
+- [[https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard][FHS]]
+- Kernel and drivers
+- Init system
+- Package manager
+- Shell
+- Graphical Environment
+** Generic GNU/Linux
+Pros:
+- Easy
+Cons:
+- Ugly
+- Have to isolate dev env from OS
+** Advanced GNU/Linux
+Pros:
+- Simple
+- Reproducible
+Cons:
+- Not familiar/Harder
+- Requires better understanding
+** Advanced GNU/Linux
+https://guix.gnu.org/
+https://nixos.org/
+* Package management
+** Project related tools vs deps
+** OS specific
+** Language specific
+** Agnostic
+* Project configs, envs
+* Services
+** Separate Terminal
+** OS specific
+** Docker
+** OS specific 2
+user-space+isolated
+* User space apps
+** Dotfiles
+Pros:
+- easy
+Cons:
+- not all apps supports text configs
+- can't specify dependencies
+** Special dot manager
+Pros:
+- can specify system package dependencies
+- can configure non-textconfig apps
+Cons:
+- harder than just dotfiles
+
+https://rycee.gitlab.io/home-manager/options.html#opt-programs.chromium.extensions
+* Sample setup
+** Getting dev env
+#+BEGIN_SRC shell
+curl -L https://nixos.org/nix/install | sh
+nix-shell -p git
+git clone https://github.com/abcdw/ti.wtf.git
+cd ti.wtf
+nix-shell
+make db/start
+make nrepl
+#+END_SRC
+* Future steps
+** DIDS
+Distributed immutable dependency system
+* Useful links
+- https://www.tweag.io/blog/2020-05-25-flakes/
+
+* Questions
+
+* Contacts
+#+OPTIONS: ^:nil
+Andrew Tropin
+- [[mailto:andrew@trop.in][andrew@trop.in]]
+- tg: [[https://t.me/tropin_channel][@tropin_channel]]
+- github: [[https://github.com/abcdw][@abcdw]]
+Andrew Zhurov
+- [[mailto:andrewzhurov@gmail.com][andrewzhurov@gmail.com]]
+- github: [[https://github.com/andrewzhurov][@andrewzhurov]]
+* noexport                                                         :noexport:
+** merge
+#+attr_html: :height 400px
+https://nvie.com/img/merge-without-ff@2x.png
+no fast-forward is preferable

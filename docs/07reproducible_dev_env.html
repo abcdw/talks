@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Reproducible Dev Env</title>
+<meta name="author" content="Andrew Tropin"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/white.css" id="theme"/>
+
+<link rel="stylesheet" href="css/custom.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h2 class="title">Reproducible Dev Env</h2>
+<img class="title-image" height="200px" src="images/07/logo.png"><p class="author">Andrew Tropin<p><p class="date">2020-06-30</p>
+</section>
+
+<section>
+<section id="slide-1">
+<h2 id="1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+</section>
+<section id="slide-1-1">
+<h3 id="1-1"><span class="section-number-3">1.1</span> Use case</h3>
+<p>
+Multilang web app with some ML
+</p>
+<ul>
+<li>Move env from one host to another</li>
+<li>Syncronize with other developers</li>
+<li>Fast setup for new developer</li>
+<li>Similiar setup prod</li>
+
+</ul>
+</section>
+<section id="slide-1-2">
+<h3 id="1-2"><span class="section-number-3">1.2</span> Dev Env Parts</h3>
+<ul>
+<li>OS and system-wide configs</li>
+<li>Configuration of user space apps (chrome, ide)</li>
+<li>Package managers (npm, apt, nix)</li>
+<li>Services (docker, systemd)</li>
+<li>Project deps (libs, packages)</li>
+<li>Project related tools (npm, kubectl, emacs plugin)</li>
+<li>Project configs, envs</li>
+
+</ul>
+</section>
+<section id="slide-1-3">
+<h3 id="1-3"><span class="section-number-3">1.3</span> Env characteristics</h3>
+<ul>
+<li>Declarative</li>
+<li>Isolated (from OS)</li>
+<li>Reliable</li>
+
+</ul>
+</section>
+<section id="slide-1-4">
+<h3 id="1-4"><span class="section-number-3">1.4</span> Easy solutions</h3>
+<ul>
+<li>Shared dev machine</li>
+<li>Frozen dev image</li>
+<li>Virtual env</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-2">
+<h2 id="2"><span class="section-number-2">2</span> OS</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+</section>
+<section id="slide-2-1">
+<h3 id="2-1"><span class="section-number-3">2.1</span> OS Parts</h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">FHS</a></li>
+<li>Kernel and drivers</li>
+<li>Init system</li>
+<li>Package manager</li>
+<li>Shell</li>
+<li>Graphical Environment</li>
+
+</ul>
+</section>
+<section id="slide-2-2">
+<h3 id="2-2"><span class="section-number-3">2.2</span> Generic GNU/Linux</h3>
+<p>
+Pros:
+</p>
+<ul>
+<li>Easy</li>
+
+</ul>
+<p>
+Cons:
+</p>
+<ul>
+<li>Ugly</li>
+<li>Have to isolate dev env from OS</li>
+
+</ul>
+</section>
+<section id="slide-2-3">
+<h3 id="2-3"><span class="section-number-3">2.3</span> Advanced GNU/Linux</h3>
+<p>
+Pros:
+</p>
+<ul>
+<li>Simple</li>
+<li>Reproducible</li>
+
+</ul>
+<p>
+Cons:
+</p>
+<ul>
+<li>Not familiar/Harder</li>
+<li>Requires better understanding</li>
+
+</ul>
+</section>
+<section id="slide-2-4">
+<h3 id="2-4"><span class="section-number-3">2.4</span> Advanced GNU/Linux</h3>
+<p>
+<a href="https://guix.gnu.org/">https://guix.gnu.org/</a>
+<a href="https://nixos.org/">https://nixos.org/</a>
+</p>
+</section>
+</section>
+<section>
+<section id="slide-3">
+<h2 id="3"><span class="section-number-2">3</span> Package management</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+</section>
+<section id="slide-3-1">
+<h3 id="3-1"><span class="section-number-3">3.1</span> Project related tools vs deps</h3>
+</section>
+<section id="slide-3-2">
+<h3 id="3-2"><span class="section-number-3">3.2</span> OS specific</h3>
+</section>
+<section id="slide-3-3">
+<h3 id="3-3"><span class="section-number-3">3.3</span> Language specific</h3>
+</section>
+<section id="slide-3-4">
+<h3 id="3-4"><span class="section-number-3">3.4</span> Agnostic</h3>
+</section>
+</section>
+<section>
+<section id="slide-4">
+<h2 id="4"><span class="section-number-2">4</span> Project configs, envs</h2>
+</section>
+</section>
+<section>
+<section id="slide-5">
+<h2 id="5"><span class="section-number-2">5</span> Services</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+</section>
+<section id="slide-5-1">
+<h3 id="5-1"><span class="section-number-3">5.1</span> Separate Terminal</h3>
+</section>
+<section id="slide-5-2">
+<h3 id="5-2"><span class="section-number-3">5.2</span> OS specific</h3>
+</section>
+<section id="slide-5-3">
+<h3 id="5-3"><span class="section-number-3">5.3</span> Docker</h3>
+</section>
+<section id="slide-5-4">
+<h3 id="5-4"><span class="section-number-3">5.4</span> OS specific 2</h3>
+<p>
+user-space+isolated
+</p>
+</section>
+</section>
+<section>
+<section id="slide-6">
+<h2 id="6"><span class="section-number-2">6</span> User space apps</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+</section>
+<section id="slide-6-1">
+<h3 id="6-1"><span class="section-number-3">6.1</span> Dotfiles</h3>
+<p>
+Pros:
+</p>
+<ul>
+<li>easy</li>
+
+</ul>
+<p>
+Cons:
+</p>
+<ul>
+<li>not all apps supports text configs</li>
+<li>can&rsquo;t specify dependencies</li>
+
+</ul>
+</section>
+<section id="slide-6-2">
+<h3 id="6-2"><span class="section-number-3">6.2</span> Special dot manager</h3>
+<p>
+Pros:
+</p>
+<ul>
+<li>can specify system package dependencies</li>
+<li>can configure non-textconfig apps</li>
+
+</ul>
+<p>
+Cons:
+</p>
+<ul>
+<li>harder than just dotfiles</li>
+
+</ul>
+
+<p>
+<a href="https://rycee.gitlab.io/home-manager/options.html#opt-programs.chromium.extensions">https://rycee.gitlab.io/home-manager/options.html#opt-programs.chromium.extensions</a>
+</p>
+</section>
+</section>
+<section>
+<section id="slide-7">
+<h2 id="7"><span class="section-number-2">7</span> Sample setup</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+</section>
+<section id="slide-7-1">
+<h3 id="7-1"><span class="section-number-3">7.1</span> Getting dev env</h3>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><span style="color: #6434A3;">curl</span> -L https://nixos.org/nix/install | sh
+nix-shell -p <span style="color: #6434A3;">git</span>
+<span style="color: #6434A3;">git</span> clone https://github.com/abcdw/ti.wtf.git
+<span style="color: #6434A3;">cd</span> ti.wtf
+nix-shell
+<span style="color: #6434A3;">make</span> db/start
+<span style="color: #6434A3;">make</span> nrepl
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-8">
+<h2 id="8"><span class="section-number-2">8</span> Future steps</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+</section>
+<section id="slide-8-1">
+<h3 id="8-1"><span class="section-number-3">8.1</span> DIDS</h3>
+<p>
+Distributed immutable dependency system
+</p>
+</section>
+</section>
+<section>
+<section id="slide-9">
+<h2 id="9"><span class="section-number-2">9</span> Useful links</h2>
+<ul>
+<li><a href="https://www.tweag.io/blog/2020-05-25-flakes/">https://www.tweag.io/blog/2020-05-25-flakes/</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-10">
+<h2 id="10"><span class="section-number-2">10</span> Questions</h2>
+
+</section>
+</section>
+<section>
+<section id="slide-11">
+<h2 id="11"><span class="section-number-2">11</span> Contacts</h2>
+<p>
+Andrew Tropin
+</p>
+<ul>
+<li><a href="mailto:andrew@trop.in">andrew@trop.in</a></li>
+<li>tg: <a href="https://t.me/tropin_channel">@tropin_channel</a></li>
+<li>github: <a href="https://github.com/abcdw">@abcdw</a></li>
+
+</ul>
+<p>
+Andrew Zhurov
+</p>
+<ul>
+<li><a href="mailto:andrewzhurov@gmail.com">andrewzhurov@gmail.com</a></li>
+<li>github: <a href="https://github.com/andrewzhurov">@andrewzhurov</a></li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: false,
+progress: true,
+history: true,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'convex', // see README of reveal.js for options
+transitionSpeed: 'default',
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+});
+</script>
+</body>
+</html>
