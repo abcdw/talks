@@ -1,0 +1,70 @@
+#+TITLE: RDE: NixOS Installation w/ flakes
+#+AUTHOR: Andrew Tropin
+#+EMAIL: andrew@trop.in
+
+#+REVEAL_THEME: white
+#+REVEAL_ROOT: ./reveal.js
+#+EXPORT_FILE_NAME: ../docs/08nixos_flake_install
+#+OPTIONS: reveal_history:t
+#+OPTIONS: reveal_control:nil
+#+REVEAL_EXTRA_CSS: css/custom.css
+#+REVEAL_TITLE_SLIDE: <h2 class="title">RDE: NixOS Installation w/ flakes</h2>
+#+REVEAL_TITLE_SLIDE: <img class="title-image" height="200px" src="images/08/nix_install.svg"><p class="author">%a<p><p class="date">2020-06-30</p>
+
+# #+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+
+* Introduction
+** In previous episode
+- OS and system-wide configs
+- Configuration of user space apps (chrome, ide)
+- Package managers (npm, apt, nix)
+- Services (docker, systemd)
+- Project deps (libs, packages)
+- Project related tools (npm, kubectl, emacs plugin)
+- Project configs, envs
+** Requirements
+- Disk encryption
+- Reproducibility
+** Existing guides
+- [[https://gist.github.com/martijnvermaat/76f2e24d0239470dd71050358b4d5134][Installation of NixOS with encrypted root]]
+- [[https://youtu.be/oPymb2-IXbg][NixOS: How it works and how to install it!]] (video)
+* Installation process
+** Generic GNU/Linux
+- Partition hard drive
+- Mount partitions
+- Configure some parts
+- Install and reboot
+- Configure everything
+
+** Advanced GNU/Linux
+- Partition hard drive
+- Mount partitions
+- Generate and edit configs
+- Install and reboot
+* How did this happen?
+** Flakes
+Allows to make builds reproducible
+* Next episode
+User-space application management
+* Useful links
+- https://t.me/nixos_en
+- https://t.me/ru_nixos
+- https://www.tweag.io/blog/2020-05-25-flakes/
+
+* Questions
+
+* Contacts
+#+OPTIONS: ^:nil
+Andrew Tropin
+- [[mailto:andrew@trop.in][andrew@trop.in]]
+- tg: [[https://t.me/tropin_channel][@tropin_channel]]
+- github: [[https://github.com/abcdw][@abcdw]]
+# Andrew Zhurov
+# - [[mailto:andrewzhurov@gmail.com][andrewzhurov@gmail.com]]
+# - github: [[https://github.com/andrewzhurov][@andrewzhurov]]
+* noexport                                                         :noexport:
+** merge
+#+attr_html: :height 400px
+https://nvie.com/img/merge-without-ff@2x.png
+no fast-forward is preferable

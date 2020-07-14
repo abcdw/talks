@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>RDE: NixOS Installation w/ flakes</title>
+<meta name="author" content="Andrew Tropin"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/white.css" id="theme"/>
+
+<link rel="stylesheet" href="css/custom.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h2 class="title">RDE: NixOS Installation w/ flakes</h2>
+<img class="title-image" height="200px" src="images/08/nix_install.svg"><p class="author">Andrew Tropin<p><p class="date">2020-06-30</p>
+</section>
+
+<section>
+<section id="slide-1">
+<h2 id="1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+</section>
+<section id="slide-1-1">
+<h3 id="1-1"><span class="section-number-3">1.1</span> In previous episode</h3>
+<ul>
+<li>OS and system-wide configs</li>
+<li>Configuration of user space apps (chrome, ide)</li>
+<li>Package managers (npm, apt, nix)</li>
+<li>Services (docker, systemd)</li>
+<li>Project deps (libs, packages)</li>
+<li>Project related tools (npm, kubectl, emacs plugin)</li>
+<li>Project configs, envs</li>
+
+</ul>
+</section>
+<section id="slide-1-2">
+<h3 id="1-2"><span class="section-number-3">1.2</span> Requirements</h3>
+<ul>
+<li>Disk encryption</li>
+<li>Reproducibility</li>
+
+</ul>
+</section>
+<section id="slide-1-3">
+<h3 id="1-3"><span class="section-number-3">1.3</span> Existing guides</h3>
+<ul>
+<li><a href="https://gist.github.com/martijnvermaat/76f2e24d0239470dd71050358b4d5134">Installation of NixOS with encrypted root</a></li>
+<li><a href="https://youtu.be/oPymb2-IXbg">NixOS: How it works and how to install it!</a> (video)</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-2">
+<h2 id="2"><span class="section-number-2">2</span> Installation process</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+</section>
+<section id="slide-2-1">
+<h3 id="2-1"><span class="section-number-3">2.1</span> Generic GNU/Linux</h3>
+<ul>
+<li>Partition hard drive</li>
+<li>Mount partitions</li>
+<li>Configure some parts</li>
+<li>Install and reboot</li>
+<li>Configure everything</li>
+
+</ul>
+
+</section>
+<section id="slide-2-2">
+<h3 id="2-2"><span class="section-number-3">2.2</span> Advanced GNU/Linux</h3>
+<ul>
+<li>Partition hard drive</li>
+<li>Mount partitions</li>
+<li>Generate and edit configs</li>
+<li>Install and reboot</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-3">
+<h2 id="3"><span class="section-number-2">3</span> How did this happen?</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+</section>
+<section id="slide-3-1">
+<h3 id="3-1"><span class="section-number-3">3.1</span> Flakes</h3>
+<p>
+Allows to make builds reproducible
+</p>
+</section>
+</section>
+<section>
+<section id="slide-4">
+<h2 id="4"><span class="section-number-2">4</span> Next episode</h2>
+<p>
+User-space application management
+</p>
+</section>
+</section>
+<section>
+<section id="slide-5">
+<h2 id="5"><span class="section-number-2">5</span> Useful links</h2>
+<ul>
+<li><a href="https://t.me/nixos_en">https://t.me/nixos_en</a></li>
+<li><a href="https://t.me/ru_nixos">https://t.me/ru_nixos</a></li>
+<li><a href="https://www.tweag.io/blog/2020-05-25-flakes/">https://www.tweag.io/blog/2020-05-25-flakes/</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-6">
+<h2 id="6"><span class="section-number-2">6</span> Questions</h2>
+
+</section>
+</section>
+<section>
+<section id="slide-7">
+<h2 id="7"><span class="section-number-2">7</span> Contacts</h2>
+<p>
+Andrew Tropin
+</p>
+<ul>
+<li><a href="mailto:andrew@trop.in">andrew@trop.in</a></li>
+<li>tg: <a href="https://t.me/tropin_channel">@tropin_channel</a></li>
+<li>github: <a href="https://github.com/abcdw">@abcdw</a></li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: false,
+progress: true,
+history: true,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'convex', // see README of reveal.js for options
+transitionSpeed: 'default',
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+});
+</script>
+</body>
+</html>
